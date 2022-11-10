@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div
+      class="cstmCol mt-3 mb-3"
+      *ngFor="let item of MenuItems; let i = index">
+      <div
+        class="item">
+        <div class="itemPic" @fadeIn>
+          <img src="{{ item.img }}" alt="" />
+        </div>
+        <div class="itemContent" @fadeIn>
+          <h5 class="itemName mt-3">
+            <span>{{ ItemNames[i].firstName }}</span>
+            <span> {{ ItemNames[i].lastName }}</span>
+          </h5>
+          <p class="itemDescription">{{ item.description }}</p>
+        </div>
+        <div class="itemPrice" @fadeIn>
+          <p>{{ item.price | currency: "USD" }}</p>
+          <button class="addCartBtn"><i class="fa fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

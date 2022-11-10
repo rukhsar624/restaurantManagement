@@ -1,0 +1,131 @@
+.cstmContainer {
+  width: 100%;
+  .logo-wrapper,
+  .head-wrapper {
+    background: #ffffff17;
+    min-height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h3,
+    h6 {
+      color: var(--headings-primary-color);
+      font-family: josefinsemiregular;
+      margin: 0;
+    }
+  }
+  .head-wrapper {
+    min-height: 100px;
+    h6 {
+      font-family: josefinsemibold;
+    }
+  }
+  .verticalMenu {
+    background: #ffffff17;
+  }
+  .nav-pills {
+    --bs-nav-pills-border-radius: 0;
+    --bs-nav-pills-link-active-bg: #1717178c;
+  }
+  .nav-pills .nav-link,
+  li {
+    padding: 2rem 0;
+    color: #fff !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 14px;
+    button{
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    a {
+      background: none;
+      border: none;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+    }
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    .sidebar-list {
+      padding-left: 85px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      position: relative;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+  .scrollMenu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    height: 150px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: relative;
+    padding-left: 80px;
+    padding-top: 10px;
+    li {
+      a {
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          left: -35px;
+          top: 50%;
+          width: 10px;
+          height: 2px;
+          background: #fff;
+        }
+      }
+    }
+  }
+  .menuIcon {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  button.nav-link {
+    position: relative;
+    label {
+      min-width: 90px;
+    }
+    .fa {
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  .active.menuItem {
+    background-color: red;
+  }
+  .scrollMenu::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollMenu {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .pull-right {
+    margin-left: 15px;
+    margin-top: 4px;
+  }
+}

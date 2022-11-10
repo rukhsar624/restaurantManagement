@@ -1,0 +1,96 @@
+/* You can add global styles to this file, and also import other style files */
+// fontawesome icons
+$font-awesome: FontAwesome;
+// fonts families
+@font-face {
+  font-family: "josefinsemibold";
+  src: local("josefinsemibold"),
+    url(./assets/fonts/josefin/JosefinSans-SemiBold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "josefinsemiregular";
+  src: local("josefinsemiregular"),
+    url(./assets/fonts/josefin/JosefinSans-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "josefinsemilight";
+  src: local("josefinsemilight"),
+    url(./assets/fonts/josefin/JosefinSans-Light.ttf) format("truetype");
+}
+@font-face {
+  font-family: "poppinsbold";
+  src: local("poppinsbold"),
+    url(./assets/fonts/Poppins/Poppins-Bold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "poppinsregular";
+  src: local("poppinsregular"),
+    url(./assets/fonts/Poppins/Poppins-Regular.ttf) format("truetype");
+}
+// themes colors
+:root {
+  --body-background: #171717;
+  --body-primary-prop: #37e3d9;
+  --body-secondary-prop: #f79888;
+  --headings-primary-color: #fff;
+  --headings-secondary-color: #000;
+}
+// body styling
+body {
+  background-color: var(--body-background) !important;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  #topProp,
+  #bottomProp{
+    position: absolute;
+    height: 100vh;
+    width: 30vw;
+    top: 0;
+    z-index: -40;
+  }
+  #topProp {
+    left: 0;
+    &::after,
+    &::before {
+      content: "";
+      height: 200px;
+      width: 200px;
+      border-radius: 100%;
+      position: absolute;
+      filter: blur(110px);
+    }
+    &::after {
+      background-color: var(--body-primary-prop);
+      bottom: 10%;
+      left: 40%;
+    }
+    &::before {
+      background-color: var(--body-secondary-prop);
+      bottom: 40%;
+      left: 10%;
+    }
+  }
+  #bottomProp {
+    right: 0;
+    &::after,
+    &::before {
+      content: "";
+      height: 200px;
+      width: 200px;
+      border-radius: 100%;
+      position: absolute;
+      filter: blur(110px);
+    }
+    &::after {
+      background-color: var(--body-primary-prop);
+      top: 10%;
+      right: 10%;
+    }
+    &::before {
+      background-color: var(--body-secondary-prop);
+      top: 40%;
+      right: 30%;
+    }
+  }
+}

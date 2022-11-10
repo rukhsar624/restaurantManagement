@@ -1,0 +1,15 @@
+<div [ngClass]="{'cstmContainer': login}">
+    <div [ngClass]="{'cstmRow h-100': login}">
+      <div class="cstmCol2 h-100" *ngIf="login">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div [ngClass]="{'cstmCol10 h-100': login}">
+        <app-header *ngIf="login"></app-header>
+        <main role="main" [@fadeAnimation]="outlet.isActivated ? outlet.activatedRoute : ''">
+          <router-outlet #outlet="outlet"></router-outlet>
+        </main>
+      </div>
+    </div>
+  </div>
+  <!-- <app-footer *ngIf="login"></app-footer> -->
+  

@@ -1,0 +1,25 @@
+<div class="container position-relative">
+  <div class="row">
+    <div class="col-sm-12 d-flex justify-content-center align-items-center">
+      <div class="d-flex justify-content-center align-items-center">
+        <main role="main">
+          <h3
+            [@animateText]="currentState"
+            (@animateText.done)="animationFinished($event)"
+          >
+            {{ text != "null" ? text : "Starters" }}
+          </h3>
+        </main>
+      </div>
+      <div class="iconsBtn d-flex justify-content-center align-items-center">
+        <p>Jhon Smith</p>
+        <button>
+          <i class="fa fa-user-o" aria-hidden="true"></i>
+        </button>
+        <button>
+          <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+.cstmContainer{
+    height: 100vh;
+    width: 100vw;
+    max-width: 100vw;
+    overflow: hidden;
+    .cstmRow{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+    }
+    .cstmCol2{
+        min-width: 20%;
+        max-width: 20%;
+        background-color: #17171766;
+    }
+    .cstmCol10{
+        min-width: 80%;
+        max-width: 80%;
+    }
+}
