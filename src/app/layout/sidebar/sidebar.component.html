@@ -15,9 +15,10 @@
     >
       <ul class="sidebar-links custom-scrollbar">
         <li
+        class="activeSide activeSideMenulink"
           [class]="menuItem.headTitle1 ? 'sidebar-main-title' : 'sidebar-list'"
-          *ngFor="let menuItem of menuItems"
-          [ngClass]="{ active: menuItem.active }"
+          *ngFor="let menuItem of menuItems; let i = index"
+          [ngClass]="{ active: menuItem.active, activeSideMenulink: i==0 }"
         >
           <!-- Submenu -->
           <a
@@ -42,7 +43,7 @@
             </div>
           </a>
           <ul
-            class="sidebar-submenu scrollMenu"
+            class="sidebar-submenu mt-5 scrollMenu"
             [ngClass]="{ active: menuItem.active }"
             [ngClass]="{
               'menu-open': menuItem.active,
@@ -52,11 +53,12 @@
             [style.display]="menuItem.active ? 'block' : 'none'"
           >
             <li
+            class="activeSide"
               *ngFor="let childrenItem of menuItem.children"
               [ngClass]="{ active: childrenItem.active }"
             >
               <!-- Submenu Link -->
-              <button (click)="routerHead(childrenItem.title)">
+              <button (click)="routerHead($event, childrenItem.title)">
                 <a
                   class="submenu-title"
                   
@@ -68,7 +70,7 @@
             </li>
           </ul>
           <!--Main menu Link -->
-          <button (click)="routerHead(menuItem.title)">
+          <button (click)="routerHead($event, menuItem.title)">
             <a
               class="sidebar-link sidebar-title"
               [class.link-nav]="!menuItem.children"

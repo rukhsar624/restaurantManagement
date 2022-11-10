@@ -1,4 +1,4 @@
-<div class="container position-relative">
+<div class="container position-relative" [ngClass]="{'headingHeight': !headingShow}">
   <div class="row">
     <div class="col-sm-12 d-flex justify-content-center align-items-center">
       <div class="d-flex justify-content-center align-items-center">
@@ -6,6 +6,7 @@
           <h3
             [@animateText]="currentState"
             (@animateText.done)="animationFinished($event)"
+            *ngIf="headingShow"
           >
             {{ text != "null" ? text : "Starters" }}
           </h3>
@@ -16,7 +17,7 @@
         <button>
           <i class="fa fa-user-o" aria-hidden="true"></i>
         </button>
-        <button>
+        <button (click)="cartShow()">
           <i class="fa fa-shopping-bag" aria-hidden="true"></i>
         </button>
       </div>

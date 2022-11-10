@@ -1,5 +1,3 @@
-import { fadeOut } from './../../../animations/itemCardAnimation';
-import { headerAnimation } from './../../../animations/headerAnimation';
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { fadeIn } from 'src/animations/itemCardAnimation';
 
@@ -17,7 +15,7 @@ export interface Name {
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss'],
-  animations: [fadeIn, fadeOut],
+  animations: [fadeIn],
 })
 export class ItemComponent implements OnInit {
   @Input() data: any;
@@ -27,6 +25,8 @@ export class ItemComponent implements OnInit {
   public ItemNamesAnimate: Name[] = [];
   constructor() {}
   ngOnChanges(changes: SimpleChanges) {
+    console.log(this.data);
+    
     this.MenuItems = this.data;
     this.data.map((e: Menu) => {
       this.ItemNames.push({

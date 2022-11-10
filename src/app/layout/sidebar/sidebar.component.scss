@@ -24,9 +24,9 @@
   .verticalMenu {
     background: #ffffff17;
   }
-  .nav-pills {
-    --bs-nav-pills-border-radius: 0;
-    --bs-nav-pills-link-active-bg: #1717178c;
+  .activeSideMenulink {
+    border-radius: 0;
+    background-color: #1717178c;
   }
   .nav-pills .nav-link,
   li {
@@ -36,7 +36,7 @@
     align-items: center;
     justify-content: flex-start;
     font-size: 14px;
-    button{
+    button {
       background: none;
       border: none;
       padding: 0;
@@ -71,19 +71,19 @@
     padding: 0;
     width: 100%;
     text-align: center;
-    height: 150px;
+    height: 180px;
     overflow-y: scroll;
     overflow-x: hidden;
     position: relative;
-    padding-left: 80px;
     padding-top: 10px;
     li {
       a {
+        padding-left: 80px;
         position: relative;
         &::after {
           content: "";
           position: absolute;
-          left: -35px;
+          left: 45px;
           top: 50%;
           width: 10px;
           height: 2px;
@@ -127,5 +127,8 @@
   .pull-right {
     margin-left: 15px;
     margin-top: 4px;
+  }
+  .submenuList {
+    padding-left: 1rem;
   }
 }

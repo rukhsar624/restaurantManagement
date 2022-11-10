@@ -1,6 +1,7 @@
 import { UniversalService } from './../../services/universal.service';
 import { NavService } from './../../services/nav.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+
 export interface Menu {
   img: string;
   item: string;
@@ -165,13 +166,16 @@ export class CustomersComponent implements OnInit {
   constructor(private navService: NavService, private cd: ChangeDetectorRef) {}
 
   ngOnInit(): void {
+    if(localStorage.getItem('heading') != null){
+      this.Menus.map((e: any) => {
+        const word:any = localStorage.getItem('heading')
+        if (e.hasOwnProperty(word)) {
+          this.MenuSelected = e[word];
+        }
+      });
+    }
+    
     this.observe();
-    this.Menus.map((e: any) => {
-      const word = 'Starters'
-      if (e.hasOwnProperty(word)) {
-        this.MenuSelected = e[word];
-      }
-    });
   }
   async observe() {
     UniversalService.headerHeading.subscribe((res: string) => {
@@ -183,5 +187,16 @@ export class CustomersComponent implements OnInit {
       });
       this.cd.detectChanges();
     });
+    UniversalService.cartShow.subscribe(res=>{
+      if(res){
+        this.Menus.map((e: any) => {
+          const word = JSON.stringify(localStorage.getItem('heading')).replace(/ /g, '_')
+          if (e.hasOwnProperty(word)) {
+            this.MenuSelected = e[word];
+          }
+        });
+      }
+      this.cd.detectChanges();
+    })
   }
 }
