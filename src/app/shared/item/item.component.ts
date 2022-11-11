@@ -1,3 +1,4 @@
+import { UniversalService } from './../../services/universal.service';
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { fadeIn } from 'src/animations/itemCardAnimation';
 
@@ -25,8 +26,6 @@ export class ItemComponent implements OnInit {
   public ItemNamesAnimate: Name[] = [];
   constructor() {}
   ngOnChanges(changes: SimpleChanges) {
-    console.log(this.data);
-    
     this.MenuItems = this.data;
     this.data.map((e: Menu) => {
       this.ItemNames.push({
@@ -38,5 +37,10 @@ export class ItemComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.data);
+  }
+  viewDetail(item:any){
+    UniversalService.itemDetailView.next(true)
+    UniversalService.itemDetail.next(item)
+    // UniversalService.headerHeading.next(item.item);
   }
 }

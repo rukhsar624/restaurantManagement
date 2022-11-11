@@ -163,38 +163,60 @@ export class CustomersComponent implements OnInit {
     },
   ];
   public MenuSelected: any;
+  public itemDetailView: boolean = false;
+  public itemDetail:any;
+  public theBoundCallback: Function;
   constructor(private navService: NavService, private cd: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    if(localStorage.getItem('heading') != null){
+    if (localStorage.getItem('heading') != null) {
       this.Menus.map((e: any) => {
-        const word:any = localStorage.getItem('heading')
+        const word: any = localStorage.getItem('heading');
         if (e.hasOwnProperty(word)) {
           this.MenuSelected = e[word];
         }
       });
     }
-    
     this.observe();
   }
   async observe() {
     UniversalService.headerHeading.subscribe((res: string) => {
       this.Menus.map((e: any) => {
-        const word = res.replace(/ /g, '_')
+        const word = res.replace(/ /g, '_');
         if (e.hasOwnProperty(word)) {
           this.MenuSelected = e[word];
         }
       });
       this.cd.detectChanges();
     });
-    UniversalService.cartShow.subscribe(res=>{
-      if(res){
+    UniversalService.cartShow.subscribe((res) => {
+      if (res) {
         this.Menus.map((e: any) => {
-          const word = JSON.stringify(localStorage.getItem('heading')).replace(/ /g, '_')
+          const word = JSON.stringify(localStorage.getItem('heading')).replace(
+            / /g,
+            '_'
+          );
           if (e.hasOwnProperty(word)) {
             this.MenuSelected = e[word];
           }
         });
+      }
+      this.cd.detectChanges();
+    });
+    UniversalService.itemDetailView.subscribe((res) => {
+      if (res) {
+        this.itemDetailView = true;
+      } else {
+        this.itemDetailView = false;
+      }
+      this.cd.detectChanges();
+    });
+    UniversalService.itemDetail.subscribe(res=>{
+      if(res){
+        this.itemDetail = res
+      }
+      else{
+        this.itemDetail = res
       }
       this.cd.detectChanges();
     })

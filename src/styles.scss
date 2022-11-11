@@ -128,3 +128,14 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.18);
   }
 }
+.checkoutBtn {
+  margin-top: 2rem;
+  button {
+    background: #2bbbbb;
+    border-radius: 100px;
+    padding: 10px 4rem;
+    border: none;
+    color: #fff;
+    font-family: poppinsbold;
+  }
+}

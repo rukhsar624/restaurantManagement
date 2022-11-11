@@ -5,10 +5,10 @@
       *ngFor="let item of MenuItems; let i = index">
       <div
         class="item">
-        <div class="itemPic" @fadeIn>
+        <div class="itemPic" @fadeIn (click)="viewDetail(item)">
           <img src="{{ item.img }}" alt="" />
         </div>
-        <div class="itemContent" @fadeIn>
+        <div class="itemContent" @fadeIn (click)="viewDetail(item)">
           <h5 class="itemName mt-3">
             <span>{{ ItemNames[i].firstName }}</span>
             <span> {{ ItemNames[i].lastName }}</span>
@@ -17,7 +17,7 @@
         </div>
         <div class="itemPrice" @fadeIn>
           <p>{{ item.price | currency: "USD" }}</p>
-          <button class="addCartBtn"><i class="fa fa-plus"></i></button>
+          <button class="addCartBtn" ><i class="fa fa-plus"></i></button>
         </div>
       </div>
     </div>

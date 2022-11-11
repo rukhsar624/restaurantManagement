@@ -49,6 +49,7 @@ export class SidebarComponent implements OnInit {
   }
   routerHead(event: any, heading: string) {
     UniversalService.headerHeading.next(heading);
+    UniversalService.itemDetailView.next(false)
     localStorage.setItem('heading',heading)
     if (
       $(event?.target?.parentNode?.parentNode?.parentNode).hasClass('activeSide') &&

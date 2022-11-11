@@ -5,13 +5,15 @@ import { CommonModule } from '@angular/common';
 import { SharedRoutingModule } from './shared-routing.module';
 import { ItemComponent } from './item/item.component';
 import { CartitemComponent } from './cartitem/cartitem.component';
+import { ItemDetailComponent } from './item-detail/item-detail.component';
 
 
 @NgModule({
   declarations: [
     ItemComponent,
     CartComponent,
-    CartitemComponent
+    CartitemComponent,
+    ItemDetailComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { CartitemComponent } from './cartitem/cartitem.component';
   ],
   exports:[
     ItemComponent,
-    CartComponent
+    CartComponent,
+    ItemDetailComponent
   ]
 })
 export class SharedModule { }
