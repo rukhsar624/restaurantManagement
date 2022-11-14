@@ -1,7 +1,13 @@
+import { AuthGuardService } from './../../services/auth-guard.service';
+import { HelperService } from './../../services/helper.service';
+import { AuthService } from './../../services/auth.service';
+import { Router } from '@angular/router';
 import { headerAnimation } from './../../../animations/headerAnimation';
 import { UniversalService } from './../../services/universal.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AnimationEvent } from '@angular/animations';
+import { Title } from '@angular/platform-browser';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,11 +16,15 @@ import { AnimationEvent } from '@angular/animations';
 })
 export class HeaderComponent implements OnInit {
   public heading: string = 'null';
+  public href: string = 'null';
   public cartButton: boolean = true;
   public headingShow: boolean = true;
-  constructor(private cd: ChangeDetectorRef) {}
+  public waiter: boolean = false;
+  constructor(private cd: ChangeDetectorRef , private router:Router, private helper:HelperService,
+    private location: Location, private AuthGuarDService:AuthGuardService) {}
 
   ngOnInit(): void {
+        
     if (localStorage.getItem('cart') == 'true') {
       this.cartButton = true;
       this.headingShow = false;
@@ -22,6 +32,7 @@ export class HeaderComponent implements OnInit {
       this.cartButton = false;
       this.headingShow = true;
     }
+    this.checkUrl()
     this.observe();
   }
   async observe() {
@@ -39,6 +50,12 @@ export class HeaderComponent implements OnInit {
         this.headingShow = true;
         this.cartButton = false;
         localStorage.setItem('cart', 'false');
+      }
+      this.cd.detectChanges();
+    });
+    UniversalService.modules.subscribe((res: boolean) => {
+      if(res){
+        this.checkUrl()
       }
       this.cd.detectChanges();
     });
@@ -65,5 +82,21 @@ export class HeaderComponent implements OnInit {
     } else {
       UniversalService.cartShow.next(false);
     }
+  }
+  logout(){
+    localStorage.clear()
+    AuthService.signin.next(false)
+    UniversalService.cartShow.next(false);
+    // this.AuthGuarDService.logout()
+    this.router.navigate(['welcome-customers'])
+  }
+  checkUrl(){
+    this.href = this.location.path()
+    this.waiter = this.helper.urlCheck(this.href, 'waiters')
+  }
+  myOrders(){
+    UniversalService.cartShow.next(false);
+    UniversalService.Orders.next(true)
+    // localStorage.setItem('')
   }
 }

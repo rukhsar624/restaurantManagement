@@ -6,7 +6,7 @@
       <div [ngClass]="{'cstmCol10 h-100': login}">
         <app-header *ngIf="login"></app-header>
         <main *ngIf="!cart">
-          <router-outlet></router-outlet>
+          <router-outlet (activate)="changeOfRoutes()"></router-outlet>
         </main>
         <app-cart @fadeIn *ngIf="cart"></app-cart>
       </div>

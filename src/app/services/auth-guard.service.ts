@@ -1,32 +1,38 @@
-import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
+import { Injectable } from "@angular/core";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService {
+export class   AuthGuardService {
+  isLogin = false;
+
+  roleAs: any;
 
   constructor() { }
-  getToken() {
-    return !!localStorage.getItem("access_token");
+
+  login(value: string) {
+    this.isLogin = true;
+    this.roleAs = value;
+    localStorage.setItem('loginstate', 'true');
+    localStorage.setItem('role', this.roleAs);
+    return of({ success: this.isLogin, role: this.roleAs });
   }
-  isLoggedIn(): boolean {
-    let loggedIn: boolean = false;
-    let expiration = this.getExpiration();
 
-    if (expiration) {
-      return Date.now() < expiration;
-    }
-    return loggedIn;
+  logout() {
+    this.isLogin = false;
+    this.roleAs = '';
+    localStorage.setItem('loginstate', 'false');
+    localStorage.setItem('role', '');
+    return of({ success: this.isLogin, role: '' });
   }
-  private getExpiration(): number {
-    let expiresAt: any = null;
 
-    const expiration = localStorage.getItem("expires_at");
-
-    if (expiration) {
-      expiresAt = JSON.parse(expiration);
-    }
-
-    return expiresAt;
+  isLoggedIn() {
+    return localStorage.getItem('access_token')
   }
+
+  getRole() {
+    return localStorage.getItem('role');
+  }
+
 }

@@ -1,5 +1,5 @@
 import { UniversalService } from './../../services/universal.service';
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { fadeIn } from 'src/animations/itemCardAnimation';
 
 export interface Menu {
@@ -16,6 +16,7 @@ export interface Name {
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeIn],
 })
 export class ItemComponent implements OnInit {
@@ -36,7 +37,6 @@ export class ItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data);
   }
   viewDetail(item:any){
     UniversalService.itemDetailView.next(true)

@@ -1,0 +1,17 @@
+.scanButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    button{
+        background: none;
+        border: none;
+        color: #5AF4FE;
+        font-size: 20px;
+        font-family: josefinbold;
+    }
+}
+.btn-close{
+    margin-top: 10px;
+    margin-left: 10px;
+}

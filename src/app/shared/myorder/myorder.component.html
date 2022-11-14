@@ -1,0 +1,53 @@
+<div class="container">
+  <button class="backBtn" (click)="back()">
+    <i class="fa fa-arrow-left"></i>
+  </button>
+  <div class="row">
+    <div class="col-sm-12">
+      <!-- <app-table></app-table> -->
+      <div class="row">
+        <div class="col-sm-3" *ngFor="let item of tables">
+          <button
+          (click)="open(table, item)"
+            class="table"
+            [ngClass]="{
+              red: item.status == 'In process',
+              yellow: item.status == 'Ending',
+              green: item.status == 'Complete'
+            }"
+          >
+            <h3>Table {{ item.no }}</h3>
+            <p
+              [ngClass]="{
+                red: item.status == 'In process',
+                yellow: item.status == 'Ending',
+                green: item.status == 'Complete'
+              }"
+            >
+              {{ item.status }}
+            </p>
+          </button>
+        </div>
+      </div>
+      <button class="addTableBtn" (click)="addTable()">
+        <i class="fa fa-plus"></i> Add Table
+      </button>
+    </div>
+  </div>
+</div>
+<!-- table preview -->
+<ng-container>
+    <ng-template #table let-modal>
+      <div class="modal-body checkoutModal completed">
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+            (click)="proceed();"
+          ></button>
+         <div class="scanButton">
+            <button >Scan QR Code</button>
+         </div>
+        </div>
+      </ng-template>
+  </ng-container>

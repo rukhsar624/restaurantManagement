@@ -14,7 +14,6 @@ export class ItemDetailComponent implements OnInit {
   public lastName:string;
   constructor() { }
   ngOnChanges(changes: SimpleChanges) {
-    console.log(this.data,'heelp');
     this.firstName = this.data?.item?.split(' ')[0]
     this.lastName = this.data?.item?.split(' ')[1]
   }

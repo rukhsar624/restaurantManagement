@@ -11,19 +11,33 @@
           <div class="welcomeForm">
             <h1 class="formTitle">Welcome</h1>
             <div class="formInputs">
-              <input placeholder="Name" class="formInput" type="text" />
-              <input placeholder="Contact No." class="formInput" type="text" />
-              <input placeholder="Email" class="formInput" type="text" />
-              <div class="d-flex align-items-center">
-                <input type="checkbox" name="" id="terms" />
-                <label for="terms" class="label"
-                  >I agree with all the agreements &
-                  <strong>Privacy Policy</strong></label
-                >
-              </div>
+              <form *ngIf="!skip">
+                <input placeholder="Name" class="formInput" type="text" />
+                <input placeholder="Contact No." class="formInput" type="text" />
+                <input placeholder="Email" class="formInput" type="text" />
+                <div class="d-flex align-items-center">
+                  <input type="checkbox" name="" id="terms" />
+                  <label for="terms" class="label"
+                    >I agree with all the agreements &
+                    <strong>Privacy Policy</strong></label
+                  >
+                </div>
+              </form>
+              <form *ngIf="skip">
+                <input placeholder="Email address" class="formInput" type="text" />
+                <input placeholder="Password." class="formInput" type="password" />
+                <div class="d-flex align-items-center">
+                  <input type="checkbox" name="" id="terms" />
+                  <label for="terms" class="label"
+                    >I agree with all the agreements &
+                    <strong>Privacy Policy</strong></label
+                  >
+                </div>
+              </form>
             </div>
-            <button class="orderBtn" (click)="signin()">Make an order</button>
-            <button class="skipBtn" (click)="signin()">Skip</button>
+            <button class="orderBtn" *ngIf="!skip" (click)="signin()">Make an order</button>
+            <button class="orderBtn" *ngIf="skip" (click)="signin()">Sign In</button>
+            <button *ngIf="!skip" class="skipBtn" (click)="signin()">Skip</button>
           </div>
           <h5 class="poweredBy">Powered by <strong>Company Name</strong></h5>
         </div>

@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+            <app-item *ngIf="!itemDetailView && !MyOrderView" [data]="MenuSelected"></app-item>
+            <app-item-detail *ngIf="itemDetailView && !MyOrderView" [data]="itemDetail"></app-item-detail>
+            <app-myorder *ngIf="MyOrderView"></app-myorder>
+    </div>
+</div>
+<div *ngIf="modalView" class="modalbtn">
+  <button id="qrCode" hidden (click)="open(qr, 'qr')"></button>
+</div>
+<ng-container>
+  <ng-template #qr let-modal>
+    <div class="modal-body checkoutModal completed">
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="proceed();"
+        ></button>
+       <div class="scanButton">
+          <button (click)="scan()">Scan QR Code</button>
+       </div>
+      </div>
+    </ng-template>
+</ng-container>

@@ -3,6 +3,7 @@ import { AuthService } from './services/auth.service';
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { fadeAnimation } from 'src/animations/animation';
 import { fadeIn } from 'src/animations/itemCartAnimation';
+import { Router, NavigationEnd } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,7 +14,36 @@ export class AppComponent {
   title = 'restaurant-management';
   public login: boolean = false;
   public cart: boolean = false;
-  constructor(private cd: ChangeDetectorRef) {}
+  private role:any = localStorage.getItem('role')
+  constructor(private cd: ChangeDetectorRef, private router: Router) {
+    if(localStorage.hasOwnProperty('role')){
+      this.router.events.subscribe((ev) => {
+        if (ev instanceof NavigationEnd) {
+          if(localStorage.hasOwnProperty('role')){
+            if(this.role != null){
+              console.log(ev.url);
+              if(ev.url.split('/')[1] != this.role && ev.url != '/'){
+                this.router.navigate([`/${this.role}`])
+              //   localStorage.setItem('user','customer')
+              }
+            }
+            else{
+              return false
+            }
+          }
+          // if(ev.url == '/welcome-waiters'){
+          //   localStorage.setItem('user','waiter')
+          // }
+          // if(this.role == 'waiter'){
+          //   this.router.navigate(['/waiters'])
+          // }
+          // if(this.role == 'customers'){
+          //   this.router.navigate(['/customers'])
+          // }
+        }
+      });
+    }
+  }
   ngOnInit(): void {
     if (localStorage.getItem('access_token') != null) {
       this.login = true;
@@ -44,5 +74,8 @@ export class AppComponent {
       }
       this.cd.detectChanges();
     });
+  }
+  changeOfRoutes(){
+
   }
 }
