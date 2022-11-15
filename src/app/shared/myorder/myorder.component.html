@@ -1,14 +1,10 @@
 <div class="container">
-  <button class="backBtn" (click)="back()">
-    <i class="fa fa-arrow-left"></i>
-  </button>
   <div class="row">
     <div class="col-sm-12">
-      <!-- <app-table></app-table> -->
       <div class="row">
         <div class="col-sm-3" *ngFor="let item of tables">
           <button
-          (click)="open(table, item)"
+            (click)="open(table, item)"
             class="table"
             [ngClass]="{
               red: item.status == 'In process',
@@ -33,21 +29,191 @@
         <i class="fa fa-plus"></i> Add Table
       </button>
     </div>
+    <div
+    *ngIf="tables.length > 0"
+      class="col-sm-12 d-flex justify-content-end align-items-center flex-wrap"
+    >
+      <div class="statusBox">
+        <div class="inprocess d-flex justify-content-center align-items-center">
+          <div class="redStatus"></div>
+          <p>In Process</p>
+        </div>
+      </div>
+      <div class="statusBox">
+        <div class="ending d-flex justify-content-center align-items-center">
+          <div class="yellowStatus"></div>
+          <p>Idol</p>
+        </div>
+      </div>
+      <div class="statusBox">
+        <div class="complete d-flex justify-content-center align-items-center">
+          <div class="greenStatus"></div>
+          <p>Pickup</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <!-- table preview -->
 <ng-container>
-    <ng-template #table let-modal>
-      <div class="modal-body checkoutModal completed">
-          <button
-            type="button"
-            class="btn-close"
-            aria-label="Close"
-            (click)="proceed();"
-          ></button>
-         <div class="scanButton">
-            <button >Scan QR Code</button>
-         </div>
+  <ng-template #table let-modal>
+    <div class="modal-body checkoutModal completed">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <div
+              class="table tableModal"
+              [ngClass]="{
+                red: selectedTable?.status == 'In process',
+                yellow: selectedTable?.status == 'Ending',
+                green: selectedTable?.status == 'Complete'
+              }"
+            >
+              <h3 class="orderHead">Table {{ selectedTable?.no }}</h3>
+              <p
+                [ngClass]="{
+                  red: selectedTable?.status == 'In process',
+                  yellow: selectedTable?.status == 'Ending',
+                  green: selectedTable?.status == 'Complete'
+                }"
+              >
+                {{ selectedTable?.status }}
+              </p>
+              <h5 class="orderNo mt-3">Order No. 123123</h5>
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <app-cartitem></app-cartitem>
+                    <app-cartitem></app-cartitem>
+                  </div>
+                </div>
+              </div>
+              <hr />
+              <h5 class="orderNo mt-3">Order No. 658151</h5>
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <app-cartitem></app-cartitem>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div
+              class="d-flex justify-content-center align-items-center flex-column h-100"
+            >
+              <h2 class="orderHead">Order Timer</h2>
+              <div>
+                <button class="btn1">20:00</button>
+              </div>
+              <h5 class="mt-3 mb-3 orderStatus">{{ selectedTable?.status }}</h5>
+              <div><button class="btm-btn">Re Order</button></div>
+              <div>
+                <button
+                  class="btm-btn bg-dng"
+                  (click)="proceed(); open(completeOrder, 'complete')"
+                >
+                  Done
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-      </ng-template>
-  </ng-container>
+      </div>
+    </div>
+  </ng-template>
+</ng-container>
+<!-- order complete -->
+<ng-container>
+  <ng-template #completeOrder let-modal>
+    <div
+      class="modal-body checkoutModal d-flex flex-column justify-content-center align-items-center"
+    >
+      <h3 class="subHead mt-3">Your Order Has been Placed</h3>
+      <h5 class="subHead mt-3">Your Order Will be served in</h5>
+      <div>
+        <button class="btn1">20:00</button>
+      </div>
+      <div><button class="btm-btn" (click)="proceed()">Re Order</button></div>
+      <div>
+        <button class="btm-btn bg-success1" (click)="proceed()">
+          Edit Order
+        </button>
+      </div>
+      <button
+        class="scanBtn mt-5 mb-3"
+        (click)="proceed(); open(viewOrder, selectedTable)"
+      >
+        View order
+      </button>
+      <button class="btn1 completeDine" (click)="proceed()">
+        Complete Dine In
+      </button>
+    </div>
+  </ng-template>
+</ng-container>
+<!-- view order -->
+<ng-template #viewOrder let-modal>
+  <button class="backBtn backModal" (click)="proceed(); open(completeOrder, 'complete')">
+    <i class="fa fa-arrow-left"></i>
+  </button>
+  <div class="modal-body checkoutModal">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 class="head mt-3 text-center">Order Preview</h1>
+        </div>
+        <div class="col-sm-12 d-flex justify-content-center align-items-center">
+          <div class="w-30 d-flex justify-content-start align-items-center">
+            <h4 class="head mt-3">Order no. 653423</h4>
+          </div>
+        </div>
+        <div class="col-sm-12 d-flex justify-content-center align-items-center">
+          <div class="w-30 d-flex justify-content-center align-items-center">
+            <app-cartitem></app-cartitem>
+          </div>
+        </div>
+        <div class="col-sm-12 d-flex justify-content-center align-items-center">
+          <div class="w-30 d-flex justify-content-center align-items-center">
+            <app-cartitem></app-cartitem>
+          </div>
+        </div>
+        <div class="col-sm-12 d-flex justify-content-center align-items-center">
+          <div class="w-40 d-flex justify-content-center align-items-center">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="hr"></div>
+                  <div class="totalSection">
+                    <div class="subtotal">
+                      <h5>Sub Total</h5>
+                      <h5>$236</h5>
+                    </div>
+                    <div class="extraCharges">
+                      <h6>GST Tax</h6>
+                      <h6>13%</h6>
+                    </div>
+                    <div class="extraCharges">
+                      <h6>Discount</h6>
+                      <h6>0%</h6>
+                    </div>
+                    <div class="grandtotal">
+                      <h5>Grand Total</h5>
+                      <h5>$250</h5>
+                    </div>
+                  </div>
+                  <div class="checkoutBtn d-flex justify-content-center align-items-center">
+                    <button (click)="proceed();">
+                      Go to Main Menu
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

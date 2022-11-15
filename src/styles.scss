@@ -62,10 +62,10 @@ body {
     z-index: -40;
   }
   #topProp {
-    -webkit-animation : pulse 10s infinite;
-    -moz-animation    : pulse 10s infinite;
-    -o-animation      : pulse 10s infinite;
-    animation         : pulse 10s infinite;
+    -webkit-animation : pulse 2s infinite, bounce 2s infinite;
+    -moz-animation    : pulse 2s infinite, bounce 2s infinite;
+    -o-animation      : pulse 2s infinite, bounce 2s infinite;
+    animation         : pulse 2s infinite, bounce 2s infinite;
     left: 0;
     &::after,
     &::before {
@@ -88,10 +88,10 @@ body {
     }
   }
   #bottomProp {
-    -webkit-animation : pulse 10s infinite;
-    -moz-animation    : pulse 10s infinite;
-    -o-animation      : pulse 10s infinite;
-    animation         : pulse 10s infinite;
+    -webkit-animation : pulse 2s infinite, bounce 2s infinite;
+    -moz-animation    : pulse 2s infinite, bounce 2s infinite;
+    -o-animation      : pulse 2s infinite, bounce 2s infinite;
+    animation         : pulse 2s infinite, bounce 2s infinite;
     right: 0;
     &::after,
     &::before {
@@ -159,5 +159,27 @@ body {
   to {
       transform : scale(1);
       opacity   : 1;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    top: 200px;
+    animation-timing-function: ease-in-out;
+  }
+  25% {
+    top: 50px;
+    animation-timing-function: ease-in-out;
+  }
+  50% {
+    top: 100px;
+    animation-timing-function: ease-in-out;
+  }
+  75% {
+    top: 75px;
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    top: 200px;
   }
 }

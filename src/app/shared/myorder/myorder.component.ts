@@ -42,6 +42,7 @@ export class MyorderComponent implements OnInit {
       centered: true,
       backdrop: 'static',
       windowClass: 'checkoutModal',
+      size:'xl'
     });
     console.log(this.selectedTable);
     
