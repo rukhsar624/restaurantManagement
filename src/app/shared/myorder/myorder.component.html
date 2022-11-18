@@ -105,7 +105,7 @@
             >
               <h2 class="orderHead">Order Timer</h2>
               <div>
-                <button class="btn1">20:00</button>
+                <button class="timerCapsule">20:00</button>
               </div>
               <h5 class="mt-3 mb-3 orderStatus">{{ selectedTable?.status }}</h5>
               <div><button class="btm-btn">Re Order</button></div>
@@ -133,7 +133,7 @@
       <h3 class="subHead mt-3">Your Order Has been Placed</h3>
       <h5 class="subHead mt-3">Your Order Will be served in</h5>
       <div>
-        <button class="btn1">20:00</button>
+        <button class="timerCapsule">20:00</button>
       </div>
       <div><button class="btm-btn" (click)="proceed()">Re Order</button></div>
       <div>
@@ -147,7 +147,7 @@
       >
         View order
       </button>
-      <button class="btn1 completeDine" (click)="proceed()">
+      <button class="timerCapsule completeDine" (click)="proceed()">
         Complete Dine In
       </button>
     </div>

@@ -18,7 +18,15 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.href = this.router.url;
-    this.skip = this.helper.urlCheck(this.href, 'welcome-waiters')
+    if(this.helper.urlSplit(this.href) == 'welcome-waiters'){
+      this.skip = this.helper.urlCheck(this.href, 'welcome-waiters')
+    }
+    if(this.helper.urlSplit(this.href) == 'welcome-kitchen'){
+      this.skip = this.helper.urlCheck(this.href, 'welcome-kitchen')
+    }
+    if(this.helper.urlSplit(this.href) == 'welcome-customers'){
+      this.skip = false
+    }
   }
   signin(){
     localStorage.setItem('access_token',"hellotoken")
@@ -30,13 +38,11 @@ export class WelcomeComponent implements OnInit {
       this.router.navigate(['/waiters'])
       this.authGuardService.login('waiters')
     }
+    if(this.helper.urlSplit(this.href) == 'welcome-kitchen'){
+      this.router.navigate(['/kitchen'])
+      this.authGuardService.login('kitchen')
+    }
     AuthService.signin.next(true)
     UniversalService.modules.next(true)
   }
-  // urlCheck(r:string) {
-  //   this.url = r.split('/')[1];
-  //   if(this.url == 'welcome-customers'){
-  //     this.skip = false 
-  //   }
-  // }
 }

@@ -16,8 +16,9 @@ export interface Menu {
 @Injectable({
   providedIn: 'root',
 })
-export class NavService implements OnDestroy {
+export class NavService{
   private unsubscriber: Subject<any> = new Subject();
+  sidebarView:boolean;
   constructor(private router: Router) {}
   public menuItem = [
     {
@@ -49,13 +50,37 @@ export class NavService implements OnDestroy {
       type: 'link',
     },
   ]
+  public kitchenItem = [
+    {
+      path: 'orders',
+      title: 'Orders',
+      icon: 'assets/sidebarIcons/starter.png',
+      type: 'link',
+    },
+    {
+      path: 'menu',
+      title: 'Menu',
+      icon: 'assets/sidebarIcons/starter.png',
+      type: 'link',
+    },
+  ]
+  public MENUITEMS: any = null;
   ngOnDestroy() {
-    // this.unsubscriber.next(null);
-    // this.unsubscriber.complete();
   }
-
-  public MENUITEMS: Menu[] = this.menuItem;
-
+  ngOnInit(): void {
+    if(localStorage.getItem('kitchenView') == 'true' || localStorage.getItem('kitchenView') != null){
+      this.sidebarView = true
+      this.MENUITEMS = this.kitchenItem
+      // alert('7uhe')
+      // this.items.next(this.kitchenItem)
+    }
+    else{
+      this.sidebarView = false
+      this.MENUITEMS = this.menuItem
+      // this.items.next(this.menuItem)
+      // alert('ehllo')
+    }
+  }
   // Array
   items = new BehaviorSubject<Menu[]>(this.MENUITEMS);
 }

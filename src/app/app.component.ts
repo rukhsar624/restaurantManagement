@@ -21,25 +21,14 @@ export class AppComponent {
         if (ev instanceof NavigationEnd) {
           if(localStorage.hasOwnProperty('role')){
             if(this.role != null){
-              console.log(ev.url);
               if(ev.url.split('/')[1] != this.role && ev.url != '/'){
                 this.router.navigate([`/${this.role}`])
-              //   localStorage.setItem('user','customer')
               }
             }
             else{
               return false
             }
           }
-          // if(ev.url == '/welcome-waiters'){
-          //   localStorage.setItem('user','waiter')
-          // }
-          // if(this.role == 'waiter'){
-          //   this.router.navigate(['/waiters'])
-          // }
-          // if(this.role == 'customers'){
-          //   this.router.navigate(['/customers'])
-          // }
         }
       });
     }

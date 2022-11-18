@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 export class HelperService {
   urlCheck(r: string, value: string) {
     let url = r.split('/')[1];
+    console.log(url,value,'hellourl');
+    
     if (url == value) {
       return true;
     } else {

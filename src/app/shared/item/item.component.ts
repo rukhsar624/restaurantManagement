@@ -41,6 +41,5 @@ export class ItemComponent implements OnInit {
   viewDetail(item:any){
     UniversalService.itemDetailView.next(true)
     UniversalService.itemDetail.next(item)
-    // UniversalService.headerHeading.next(item.item);
   }
 }

@@ -62,10 +62,10 @@ body {
     z-index: -40;
   }
   #topProp {
-    -webkit-animation : pulse 2s infinite, bounce 2s infinite;
-    -moz-animation    : pulse 2s infinite, bounce 2s infinite;
-    -o-animation      : pulse 2s infinite, bounce 2s infinite;
-    animation         : pulse 2s infinite, bounce 2s infinite;
+    -webkit-animation: pulse 2s infinite, bounce 2s infinite;
+    -moz-animation: pulse 2s infinite, bounce 2s infinite;
+    -o-animation: pulse 2s infinite, bounce 2s infinite;
+    animation: pulse 2s infinite, bounce 2s infinite;
     left: 0;
     &::after,
     &::before {
@@ -88,10 +88,10 @@ body {
     }
   }
   #bottomProp {
-    -webkit-animation : pulse 2s infinite, bounce 2s infinite;
-    -moz-animation    : pulse 2s infinite, bounce 2s infinite;
-    -o-animation      : pulse 2s infinite, bounce 2s infinite;
-    animation         : pulse 2s infinite, bounce 2s infinite;
+    -webkit-animation: pulse 2s infinite, bounce 2s infinite;
+    -moz-animation: pulse 2s infinite, bounce 2s infinite;
+    -o-animation: pulse 2s infinite, bounce 2s infinite;
+    animation: pulse 2s infinite, bounce 2s infinite;
     right: 0;
     &::after,
     &::before {
@@ -149,16 +149,16 @@ body {
 }
 @keyframes pulse {
   from {
-      transform : scale(1);
-      opacity   : 1;
+    transform: scale(1);
+    opacity: 1;
   }
   50% {
-      transform : scale(0.75);
-      opacity   : 0.25;
+    transform: scale(0.75);
+    opacity: 0.25;
   }
   to {
-      transform : scale(1);
-      opacity   : 1;
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
@@ -181,5 +181,118 @@ body {
   }
   100% {
     top: 200px;
+  }
+}
+// timer capsule
+.timerCapsule {
+  padding: 10px 2.5rem;
+  color: #ffffff;
+  background-color: #ff3131;
+  border-radius: 40px;
+  font-weight: 400;
+  margin-top: 10px;
+  font-size: 30px;
+  border: none;
+  font-family: josefinsemiregular;
+}
+.searchField {
+  position: relative;
+  input {
+    background-color: #444444;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 1rem 10px 2rem;
+    width: 100%;
+  }
+  i {
+    position: absolute;
+    color: #757575;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+// table styling
+.table-responsive,tbody{
+  border-radius: 10px;
+}
+.table-responsive {
+  thead {
+    background-color: #444444;
+  }
+  tbody {
+    background: #262626;
+  }
+  tr,
+  th,
+  td {
+    color: #fff;
+    border: 0;
+    padding: 20px 50px !important;
+    font-family: josefinsemilight;
+  }
+}
+.ngx-pagination .pagination-previous a:before,
+.ngx-pagination .pagination-previous.disabled:before,
+.ngx-pagination .pagination-next a:after,
+.ngx-pagination .pagination-next.disabled:after {
+  content: unset !important;
+}
+.ngx-pagination .current,
+.ngx-pagination a:hover, .ngx-pagination button:hover {
+  border-radius: 5px;
+  background: #444444 !important;
+}
+.table-responsive{
+  li {
+    margin:0 5px;
+    a{
+      background: #262626 !important;
+      border-radius: 5px !important;
+    }
+  }
+}
+// toggle switch
+.toggle{
+  input[type=checkbox]{
+    height: 0;
+    width: 0;
+    visibility: hidden;
+  }
+  
+  label {
+    cursor: pointer;
+    width: 50px;
+    height: 25px;
+    background: none;
+    display: block;
+    border-radius: 100px;
+    position: relative;
+    border: 1px solid;
+  }
+  
+  label:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 15px;
+    height: 15px;
+    background:#D40404;
+    border-radius: 90px;
+    transition: 0.3s;
+  }
+  
+  input:checked + label:after {
+    background: #04AD5C;
+  }
+  
+  input:checked + label:after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+  }
+  
+  label:active:after {
+    width:70px;
   }
 }

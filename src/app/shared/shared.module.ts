@@ -10,6 +10,7 @@ import { CartitemComponent } from './cartitem/cartitem.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { MyorderComponent } from './myorder/myorder.component';
 import { TableComponent } from './table/table.component';
+import { OrderComponent } from './order/order.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { TableComponent } from './table/table.component';
     ItemDetailComponent,
     WelcomeComponent,
     MyorderComponent,
-    TableComponent
+    TableComponent,
+    OrderComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { TableComponent } from './table/table.component';
     ItemComponent,
     CartComponent,
     ItemDetailComponent,
-    MyorderComponent
+    MyorderComponent,
+    OrderComponent
   ]
 })
 export class SharedModule { }

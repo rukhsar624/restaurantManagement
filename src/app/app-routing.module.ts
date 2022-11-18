@@ -29,6 +29,12 @@ const routes: Routes = [
     data: { animation: 'welcomePage' },
   },
   {
+    path: 'welcome-kitchen',
+    component: WelcomeComponent,
+    canActivate: [InnerGuard],
+    data: { animation: 'welcomePage' },
+  },
+  {
     path: 'add-cart',
     component: CartComponent,
     canActivate: [AuthGuard],
@@ -50,6 +56,7 @@ const routes: Routes = [
     data: { title: 'waiters' , roles: 'waiters'},
 
   },
+  { path: 'kitchen', loadChildren: () => import('./modules/kitchen/kitchen.module').then(m => m.KitchenModule) },
 ];
 
 @NgModule({

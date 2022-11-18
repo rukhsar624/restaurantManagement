@@ -21,32 +21,105 @@ export class SidebarComponent implements OnInit {
   public SubMenu: boolean = false;
   public activeImage = true;
   public waiter:boolean 
+  public kitchen:boolean 
   public sidebarEnable:boolean = true 
   public serviceheading: any;
   public href:string
-  constructor(private location: Location, private cd: ChangeDetectorRef, public navServices: NavService, private helper:HelperService, private router:Router) {
-    this.navServices.items.subscribe((menuItems) => {
-      this.menuItems = menuItems;
-    });
-  }
+  public menuItem = [
+    {
+      path: 'starters',
+      title: 'Starters',
+      icon: 'assets/sidebarIcons/starter.png',
+      type: 'link',
+    },
+    {
+      title: 'Main Course',
+      type: 'sub',
+      icon: 'assets/sidebarIcons/maincourse.png',
+      active: false,
+      children: [
+        { path: 'fast-food', title: 'Fast Food', type: 'link' },
+        { path: 'bbq', title: 'BBQ', type: 'link' },
+      ],
+    },
+    {
+      path: 'beverages',
+      title: 'Beverages',
+      icon: 'assets/sidebarIcons/beverages.png',
+      type: 'link',
+    },
+    {
+      path: 'desserts',
+      title: 'Desserts',
+      icon: 'assets/sidebarIcons/dessert.png',
+      type: 'link',
+    },
+  ]
+  public kitchenItem = [
+    {
+      path: 'orders',
+      title: 'Orders',
+      icon: 'assets/sidebarIcons/starter.png',
+      type: 'link',
+    },
+    {
+      path: 'menu',
+      title: 'Menu',
+      icon: 'assets/sidebarIcons/starter.png',
+      type: 'link',
+    },
+  ]
+  constructor(private location: Location, private cd: ChangeDetectorRef, public navServices: NavService, private helper:HelperService, private router:Router) {}
   ngOnInit(): void {
+    
     this.href = this.location.path()
+    console.log(this.href,"item");
     if(this.href == '/customers'){
       this.waiter = this.helper.urlCheck(this.href, 'customers')
     }
     if(this.href == '/welcome-customers'){
       this.waiter = this.helper.urlCheck(this.href, 'welcome-customers')
     }
-    if(this.waiter == false){
+    if(this.href == '/waiters'){
+      this.waiter = this.helper.urlCheck(this.href, 'waiters')
+    }
+    if(this.href == '/welcome-waiters'){
+      this.waiter = this.helper.urlCheck(this.href, 'welcome-waiters')
+    }
+    if(this.href.split('/')[1] == 'kitchen'){
+      this.kitchen = this.helper.urlCheck(`/${this.href.split('/')[1]}`, 'kitchen')
+      this.waiter = this.helper.urlCheck(`/${this.href.split('/')[1]}`, 'kitchen')
+      
+    }
+    if(this.href == '/welcome-kitchen'){
+      this.kitchen = this.helper.urlCheck(this.href, 'welcome-kitchen')
+      this.waiter = this.helper.urlCheck(this.href, 'welcome-kitchen')
+    }
+    if(this.href == ''){
+      this.waiter = true
+    }
+    if(!this.waiter){
       localStorage.setItem('orderView', 'false')
+    }
+    if(this.waiter){
+      localStorage.setItem('orderView', 'true')
+    }
+    if(this.kitchen){
+      localStorage.setItem('kitchenView', 'true')
     }
     this.observe();
     this.routerHead(null, 'Starters');
     if(localStorage.getItem('orderView') == 'false' || localStorage.getItem('orderView') == null){
-      this.sidebarEnable = true
+      this.sidebarEnable = false
     }
     else{
-      this.sidebarEnable = false
+      this.sidebarEnable = true
+    }
+    if(localStorage.getItem('kitchenView') == 'true' || localStorage.getItem('kitchenView') != null){
+      this.menuItems = this.kitchenItem
+    }
+    else{
+      this.menuItems = this.menuItem
     }
   }
   // Click Toggle menu
@@ -89,6 +162,7 @@ export class SidebarComponent implements OnInit {
     UniversalService.headerHeading.subscribe((res: string) => {
       this.serviceheading = res;
       this.cd.detectChanges();
+    // this.toggletNavActive(res)
     });
     UniversalService.SideBar.subscribe((res: boolean) => {
       if(!res){
