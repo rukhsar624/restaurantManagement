@@ -15,16 +15,18 @@ import { Location } from '@angular/common';
   animations: [headerAnimation],
 })
 export class HeaderComponent implements OnInit {
-  public heading: string = 'null';
+  public heading: any = localStorage.getItem('lastVisitheadingPage') ? localStorage.getItem('lastVisitheadingPage') : "Starters";
   public href: string = 'null';
   public cartButton: boolean = true;
   public headingShow: boolean = true;
   public waiter: boolean = false;
   constructor(private cd: ChangeDetectorRef , private router:Router, private helper:HelperService,
     private location: Location, private AuthGuarDService:AuthGuardService) {}
-
+    text: any = localStorage.getItem('lastVisitheadingPage') ? localStorage.getItem('lastVisitheadingPage') : "Starters";
   ngOnInit(): void {
-        
+    this.text = localStorage.getItem('lastVisitheadingPage') ? localStorage.getItem('lastVisitheadingPage') : "Starters"; 
+  this.heading = localStorage.getItem('lastVisitheadingPage') ? localStorage.getItem('lastVisitheadingPage') : "Starters";
+
     if (localStorage.getItem('cart') == 'true') {
       this.cartButton = true;
       this.headingShow = false;
@@ -60,7 +62,7 @@ export class HeaderComponent implements OnInit {
       this.cd.detectChanges();
     });
   }
-  text: string = 'null';
+  
   currentState = 'hidden';
 
   changeText() {

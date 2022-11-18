@@ -44,8 +44,6 @@ export class MyorderComponent implements OnInit {
       windowClass: 'checkoutModal',
       size:'xl'
     });
-    console.log(this.selectedTable);
-    
   }
   proceed() {
     this.modalReference.close();

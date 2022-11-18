@@ -24,10 +24,10 @@
   .verticalMenu {
     background: #ffffff17;
   }
-  .activeSideMenulink {
-    border-radius: 0;
-    background-color: #1717178c;
-  }
+  // .activeSideMenulink {
+  //   border-radius: 0;
+  //   background-color: #1717178c;
+  // }
   .nav-pills .nav-link,
   li {
     padding: 2rem 0;
@@ -134,4 +134,8 @@
 }
 .disable{
   cursor: not-allowed;
+}
+.active{
+  border-radius: 0;
+    background-color: #1717178c;
 }

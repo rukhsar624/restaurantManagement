@@ -17,13 +17,10 @@ export class OrderComponent implements OnInit {
   constructor(private modalService: NgbModal) { }
   ngOnChanges(changes: SimpleChanges) {
     this.Orders = this.data;
-    console.log(this.Orders);
-    
   }
   ngOnInit(): void {
   }
   open(content:any, modal:any) {
-    console.log(modal);
     this.OrderDetail = modal
     this.modalReference = this.modalService.open(content, { centered: true, backdrop:'static', windowClass: 'checkoutModal',size:'xl'});
 	}
