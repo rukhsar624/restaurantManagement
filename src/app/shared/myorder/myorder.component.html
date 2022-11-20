@@ -1,25 +1,19 @@
-<div class="container">
-  <div class="row">
+<div class="container" *ngIf="opt == 'waiters'">
+  <div class="row cstmHeight">
     <div class="col-sm-12">
       <div class="row">
         <div class="col-sm-3" *ngFor="let item of tables">
-          <button
-            (click)="open(table, item)"
-            class="table"
-            [ngClass]="{
+          <button (click)="open(table, item)" class="table" [ngClass]="{
               red: item.status == 'In process',
               yellow: item.status == 'Ending',
               green: item.status == 'Complete'
-            }"
-          >
+            }">
             <h3>Table {{ item.no }}</h3>
-            <p
-              [ngClass]="{
+            <p [ngClass]="{
                 red: item.status == 'In process',
                 yellow: item.status == 'Ending',
                 green: item.status == 'Complete'
-              }"
-            >
+              }">
               {{ item.status }}
             </p>
           </button>
@@ -29,10 +23,7 @@
         <i class="fa fa-plus"></i> Add Table
       </button>
     </div>
-    <div
-    *ngIf="tables.length > 0"
-      class="col-sm-12 d-flex justify-content-end align-items-center flex-wrap"
-    >
+    <div *ngIf="tables.length > 0" class="col-sm-12 d-flex justify-content-end align-items-center flex-wrap">
       <div class="statusBox">
         <div class="inprocess d-flex justify-content-center align-items-center">
           <div class="redStatus"></div>
@@ -54,6 +45,187 @@
     </div>
   </div>
 </div>
+<div class="container" *ngIf="opt == 'counter currentorders'">
+  <div class="row cstmHeight">
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-4" *ngFor="let item of tables">
+          <button (click)="open(table, item)" class="table counterTbale">
+            <h3>Table {{ item.no }}</h3>
+          </button>
+          <div class="actionBtnBox">
+            <button class="actionBtn greenbackground"> <i class="fa fa-refresh"></i> {{item.action.process}}</button>
+            <button class="actionBtn bluebackground"> <i class="fa fa-edit"></i> {{item.action.edit}}</button>
+            <button class="actionBtn redbackground"> <i class="fa fa-ban"></i> {{item.action.cancel}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="opt == 'counter allorders'">
+  <div class="row">
+    <div class="col-sm-12 d-flex justify-content-end cstmDropDown">
+      <ng-select [(ngModel)]="selectedView">
+        <ng-option *ngFor="let view of views" [value]="view.name">{{view.name}}</ng-option>
+      </ng-select>
+      <ng-select [(ngModel)]="selectedSort">
+        <ng-option *ngFor="let sort of sorts" [value]="sort.name">{{sort.name}}</ng-option>
+      </ng-select>
+    </div>
+    <ng-container *ngIf="selectedView =='Grid View'">
+      <div class="col-sm-3" *ngFor="let item of tables | paginate
+      : {
+          itemsPerPage: 10,
+          currentPage: duePage,
+          totalItems: total
+        }">
+        <button (click)="open(table, item)" class="table counterTbale" [ngClass]="{
+                red: item.status == 'In process',
+                yellow: item.status == 'Ending',
+                green: item.status == 'Complete'
+              }">
+          <h3>Table {{ item.no }}</h3>
+        </button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="selectedView =='List View'">
+      <div class="col-sm-12 mt-3 listView">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="
+                  let i = index;
+                  let item;
+                  of: tables
+                    | paginate
+                      : {
+                          itemsPerPage: 3,
+                          currentPage: duePage,
+                          totalItems: total
+                        }
+                ">
+                <th scope="row">{{ i }}</th>
+                <td>
+                  {{ item.no ? item.no : "N/A" }}
+                </td>
+                <td>{{ item.status ? item.status : "N/A" }}</td>
+                <td>
+                  <div class="toggle d-flex align-items-center justify-content-center">
+                    <button class="noBg" (click)="open(table, item)"> <i class="fa fa-eye"></i> </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </ng-container>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <p class="heading">Showing 1 to 10 of 26 Times</p>
+        </div>
+        <div class="col-sm-6 d-flex justify-content-end">
+          <pagination-controls previousLabel="&lsaquo;" nextLabel="&rsaquo;" (pageChange)="duePage = $event">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container position-relative" *ngIf="opt == 'counter byWaiters'">
+  <div class="row">
+    <div class="col-sm-4 d-flex justify-content-start align-items-center">
+      <div class="searchField mt-1 w-100">
+        <input type="text" class="w-100" placeholder="Search Item" />
+        <i class="fa fa-search"></i>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <label class="dateLabel">Date Range</label>
+      <div class="searchField mt-1 dateForm">
+        <input type="text" placeholder="From" />
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <label for=""></label>
+      <div class="searchField mt-1 dateForm">
+        <input type="text" placeholder="To" />
+      </div>
+    </div>
+    <div class="col-sm-2 d-flex justify-content-end align-items-center cstmDropDown">
+      <!-- <ng-select [(ngModel)]="selectedView">
+        <ng-option *ngFor="let view of views" [value]="view.name">{{view.name}}</ng-option>
+      </ng-select> -->
+      <ng-select [(ngModel)]="selectedSort">
+        <ng-option *ngFor="let sort of sorts" [value]="sort.name">{{sort.name}}</ng-option>
+      </ng-select>
+    </div>
+    <div class="col-sm-12 mt-1 listView">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">S.No</th>
+              <th scope="col">Order No.</th>
+              <th scope="col">Name</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Items</th>
+              <th scope="col">Tables</th>
+              <th scope="col">Waiter</th>
+              <th scope="col">Payment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="
+                  let i = index;
+                  let item;
+                  of: tables
+                    | paginate
+                      : {
+                          itemsPerPage: 5,
+                          currentPage: duePage,
+                          totalItems: total
+                        }
+                ">
+              <th scope="row">{{ i }}</th>
+              <td>
+                {{ item.no ? item.no : "N/A" }}
+              </td>
+              <td>{{ item.name ? item.name : "N/A" }}</td>
+              <td>{{ item.amount ? item.amount : "N/A" }}</td>
+              <td>{{ item.items ? item.items : "N/A" }}</td>
+              <td>{{ item.tables ? item.tables : "N/A" }}</td>
+              <td>{{ item.waiter ? item.waiter : "N/A" }}</td>
+              <td>{{ item.payment ? item.payment : "N/A" }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="exportFile"> <i class="fa fa-file"></i> Export File</p>
+    </div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <p class="heading">Showing 1 to 10 of 26 Times</p>
+        </div>
+        <div class="col-sm-6 d-flex justify-content-end">
+          <pagination-controls previousLabel="&lsaquo;" nextLabel="&rsaquo;" (pageChange)="duePage = $event">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- table preview -->
 <ng-container>
   <ng-template #table let-modal>
@@ -61,22 +233,17 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-6">
-            <div
-              class="table tableModal"
-              [ngClass]="{
+            <div class="table tableModal" [ngClass]="{
                 red: selectedTable?.status == 'In process',
                 yellow: selectedTable?.status == 'Ending',
                 green: selectedTable?.status == 'Complete'
-              }"
-            >
+              }">
               <h3 class="orderHead">Table {{ selectedTable?.no }}</h3>
-              <p
-                [ngClass]="{
+              <p [ngClass]="{
                   red: selectedTable?.status == 'In process',
                   yellow: selectedTable?.status == 'Ending',
                   green: selectedTable?.status == 'Complete'
-                }"
-              >
+                }">
                 {{ selectedTable?.status }}
               </p>
               <h5 class="orderNo mt-3">Order No. 123123</h5>
@@ -100,9 +267,7 @@
             </div>
           </div>
           <div class="col-sm-6">
-            <div
-              class="d-flex justify-content-center align-items-center flex-column h-100"
-            >
+            <div class="d-flex justify-content-center align-items-center flex-column h-100">
               <h2 class="orderHead">Order Timer</h2>
               <div>
                 <button class="timerCapsule">20:00</button>
@@ -110,10 +275,7 @@
               <h5 class="mt-3 mb-3 orderStatus">{{ selectedTable?.status }}</h5>
               <div><button class="btm-btn">Re Order</button></div>
               <div>
-                <button
-                  class="btm-btn bg-dng"
-                  (click)="proceed(); open(completeOrder, 'complete')"
-                >
+                <button class="btm-btn bg-dng" (click)="proceed(); open(completeOrder, 'complete')">
                   Done
                 </button>
               </div>
@@ -127,9 +289,7 @@
 <!-- order complete -->
 <ng-container>
   <ng-template #completeOrder let-modal>
-    <div
-      class="modal-body checkoutModal d-flex flex-column justify-content-center align-items-center"
-    >
+    <div class="modal-body checkoutModal d-flex flex-column justify-content-center align-items-center">
       <h3 class="subHead mt-3">Your Order Has been Placed</h3>
       <h5 class="subHead mt-3">Your Order Will be served in</h5>
       <div>
@@ -141,10 +301,7 @@
           Edit Order
         </button>
       </div>
-      <button
-        class="scanBtn mt-5 mb-3"
-        (click)="proceed(); open(viewOrder, selectedTable)"
-      >
+      <button class="scanBtn mt-5 mb-3" (click)="proceed(); open(viewOrder, selectedTable)">
         View order
       </button>
       <button class="timerCapsule completeDine" (click)="proceed()">

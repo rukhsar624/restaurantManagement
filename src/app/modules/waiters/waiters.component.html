@@ -2,7 +2,7 @@
     <div class="row">
             <app-item *ngIf="!itemDetailView && !MyOrderView" [data]="MenuSelected"></app-item>
             <app-item-detail *ngIf="itemDetailView && !MyOrderView" [data]="itemDetail"></app-item-detail>
-            <app-myorder *ngIf="MyOrderView"></app-myorder>
+            <app-myorder *ngIf="MyOrderView" [tables]="tables" [opt]="'waiters'"></app-myorder>
     </div>
 </div>
 <div *ngIf="modalView" class="modalbtn">

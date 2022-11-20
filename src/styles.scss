@@ -1,6 +1,8 @@
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 /* You can add global styles to this file, and also import other style files */
+// ng select
+@import "~@ng-select/ng-select/themes/default.theme.css";
 // fontawesome icons
 $font-awesome: FontAwesome;
 // fonts families
@@ -213,8 +215,13 @@ body {
   }
 }
 // table styling
-.table-responsive,tbody{
-  border-radius: 10px;
+tbody{
+  border-bottom-left-radius  : 10px;
+  border-bottom-right-radius  : 10px;
+}
+thead{
+  border-top-left-radius  : 10px;
+  border-top-right-radius  : 10px;
 }
 .table-responsive {
   thead {
@@ -295,4 +302,18 @@ body {
   label:active:after {
     width:70px;
   }
+}
+.cstmDropDown{
+  .ng-select .ng-select-container,
+  .ng-select.ng-select-single .ng-select-container {
+    background: #fff0 !important;
+    border-color: transparent !important;
+    color: #fff;
+  }
+}
+.noBg{
+  background: none;
+  border: none;
+  padding: 10px;
+  color: #fff;
 }

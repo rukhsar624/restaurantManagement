@@ -14,7 +14,7 @@
   border: none;
   color: #5af4fe;
   width: 100%;
-  height: 80px;
+  min-height: 80px;
   background: #ffffff40;
   border-radius: 10px;
   display: flex;
@@ -42,6 +42,11 @@
     border-radius: 10px;
   }
 }
+.counterTbale{
+  background: url('../../../assets/images/tableCover.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .table.red {
   &::after {
     background-color: #e36a6a;
@@ -65,6 +70,21 @@
 }
 .yellow {
   color: #e1e36a !important;
+}
+.blue{
+  color: #2B7EA1 !important;
+}
+.redbackground {
+  background-color: #e36a6a !important;
+}
+.greenbackground {
+  background-color: #2BA18C !important;
+}
+.yellowbackground {
+  background-color: #e1e36a !important;
+}
+.bluebackground{
+  background-color: #2B7EA1 !important;
 }
 .backBtn {
   margin-top: 1rem;
@@ -239,4 +259,48 @@
 .backModal {
   margin-left: 20px;
   margin-top: 20px;
+}
+.actionBtn{
+  border: none;
+  color: #fff;
+  border-radius: 100px;
+  // min-width: 150px;
+  margin:5px 10px;
+  padding: 5px 1.5rem;
+}
+.fa{
+  font-size: 10px;
+}
+.cstmHeight{
+  height: 70vh;
+  overflow-y: scroll;
+}
+.ng-select{
+  min-width: 150px;
+}
+.listView{
+  .table>:not(caption)>*>* {
+    min-width: 150px;
+    padding: 10px 0 !important;
+      text-align: center;
+  }
+}
+.dateLabel{
+  font-size: 10px;
+}
+.dateForm{
+  input{
+    padding-left: 10px;
+  }
+}
+.exportFile{
+  margin: 0;
+  color: #fff;
+  position: absolute;
+  bottom: 10px;
+  right: 40px;
+  cursor: pointer;
+  .fa{
+    font-size: 20px;
+}
 }

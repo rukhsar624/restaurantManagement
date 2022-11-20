@@ -1,1 +1,54 @@
-<p>orders works!</p>
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>Current Orders</a>
+    <ng-template ngbNavContent>
+      <div class="container">
+        <!-- <div class="row"> -->
+          <app-item *ngIf="!itemDetailView && !MyOrderView" [data]="MenuSelected"></app-item>
+          <app-item-detail *ngIf="itemDetailView && !MyOrderView" [data]="itemDetail"></app-item-detail>
+          <app-myorder *ngIf="MyOrderView" [tables]="tables" [opt]="'counter currentorders'"></app-myorder>
+        <!-- </div> -->
+      </div>
+      <div *ngIf="modalView" class="modalbtn">
+        <button id="qrCode" hidden (click)="open(qr, 'qr')"></button>
+      </div>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink>All Orders</a>
+    <ng-template ngbNavContent>
+      <div class="container">
+        <!-- <div class="row"> -->
+          <app-item *ngIf="!itemDetailView && !MyOrderView" [data]="MenuSelected"></app-item>
+          <app-item-detail *ngIf="itemDetailView && !MyOrderView" [data]="itemDetail"></app-item-detail>
+          <app-myorder *ngIf="MyOrderView" [tables]="tables" [opt]="'counter allorders'"></app-myorder>
+        <!-- </div> -->
+      </div>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="3">
+    <a ngbNavLink>By Waiters</a>
+    <ng-template ngbNavContent>
+      <div class="container">
+        <!-- <div class="row"> -->
+          <app-item *ngIf="!itemDetailView && !MyOrderView" [data]="MenuSelected"></app-item>
+          <app-item-detail *ngIf="itemDetailView && !MyOrderView" [data]="itemDetail"></app-item-detail>
+          <app-myorder *ngIf="MyOrderView" [tables]="Waitertables" [opt]="'counter byWaiters'"></app-myorder>
+        <!-- </div> -->
+      </div>
+    </ng-template>
+  </li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+<!-- modals -->
+<ng-container>
+  <ng-template #qr let-modal>
+    <div class="modal-body checkoutModal completed">
+      <button type="button" class="btn-close" aria-label="Close" (click)="proceed();"></button>
+      <div class="scanButton">
+        <button (click)="scan()">Scan QR Code</button>
+      </div>
+    </div>
+  </ng-template>
+</ng-container>

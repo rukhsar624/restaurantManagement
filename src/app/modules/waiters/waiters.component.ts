@@ -9,6 +9,15 @@ import * as $ from 'jquery'
   styleUrls: ['./waiters.component.scss']
 })
 export class WaitersComponent implements OnInit {
+  public tables: any = [
+    { no: '01', status: 'Complete' },
+    { no: '02', status: 'Ending' },
+    { no: '03', status: 'Ending' },
+    { no: '04', status: 'In process' },
+    { no: '05', status: 'Complete' },
+    { no: '06', status: 'Ending' },
+    { no: '07', status: 'In process' },
+  ];
   public Menus: any = [
     {
       Starters: [

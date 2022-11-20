@@ -11,6 +11,7 @@ import { BookingsComponent } from './bookings/bookings.component';
 import { SupportComponent } from './support/support.component';
 import { MenuComponent } from './menu/menu.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     CounterRoutingModule,
     SharedModule,
+    NgbModule
   ]
 })
 export class CounterModule { }

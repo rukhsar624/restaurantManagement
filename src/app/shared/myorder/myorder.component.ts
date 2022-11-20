@@ -1,6 +1,6 @@
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UniversalService } from './../../services/universal.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-myorder',
@@ -8,20 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./myorder.component.scss'],
 })
 export class MyorderComponent implements OnInit {
-  public tables: any = [
-    { no: '01', status: 'Complete' },
-    { no: '02', status: 'Ending' },
-    { no: '03', status: 'Ending' },
-    { no: '04', status: 'In process' },
-    { no: '05', status: 'Complete' },
-    { no: '06', status: 'Ending' },
-    { no: '07', status: 'In process' },
-  ];
+  @Input() tables: any;
+  @Input() opt: any;
   modalReference: any;
   selectedTable: any;
+  duePage: any;
+  total: any;
   constructor(private modalService: NgbModal) {}
-
+  views = [
+    { id: 1, name: 'Grid View' },
+    { id: 2, name: 'List View' },
+  ];
+  selectedView: any = this.views[0].name;
+  sorts = [
+    { id: 1, name: 'Sort By Name' },
+    { id: 2, name: 'Sort By Date' },
+  ];
+  selectedSort: any = this.sorts[0].name;
   ngOnInit(): void {
+    console.log(this.selectedView);
+    
     UniversalService.SideBar.next(false);
     if (localStorage.getItem('orderView') == 'false') {
       return;

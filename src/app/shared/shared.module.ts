@@ -11,6 +11,9 @@ import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { MyorderComponent } from './myorder/myorder.component';
 import { TableComponent } from './table/table.component';
 import { OrderComponent } from './order/order.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { OrderComponent } from './order/order.component';
   imports: [
     CommonModule,
     SharedRoutingModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule,
+    NgSelectModule,
+    FormsModule
   ],
   exports:[
     ItemComponent,
