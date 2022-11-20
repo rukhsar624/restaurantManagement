@@ -157,9 +157,13 @@ export class SidebarComponent implements OnInit {
         localStorage.setItem('orderView', 'true')
       }
     };
+    if(this.role != 'waiters') {
+      if(!localStorage.hasOwnProperty('orderView')){
+        localStorage.setItem('orderView', 'false')
+      }
+    };
     if(this.role == 'kitchen') this.menuItems = this.kitchenItem;
     if(this.role == 'counter') this.menuItems = this.counterItem;
-    this.observe();
     let vistHead = localStorage.getItem('lastVisitheadingPage');
     if (localStorage.getItem('lastVisitheadingPage') != null) {
       this.routerHead(null, vistHead);
@@ -184,7 +188,10 @@ export class SidebarComponent implements OnInit {
         e['active'] = false;
       }
     });
+    this.observe();
+    
   }
+  
   // Click Toggle menu
   toggletNavActive(item: any) {
     if (!item.active) {
@@ -256,5 +263,6 @@ export class SidebarComponent implements OnInit {
       }
       this.cd.detectChanges();
     });
+    
   }
 }

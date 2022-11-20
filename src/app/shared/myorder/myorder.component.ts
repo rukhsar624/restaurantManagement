@@ -27,8 +27,7 @@ export class MyorderComponent implements OnInit {
   selectedSort: any = this.sorts[0].name;
   ngOnInit(): void {
     console.log(this.selectedView);
-    
-    UniversalService.SideBar.next(false);
+    // UniversalService.SideBar.next(false);
     if (localStorage.getItem('orderView') == 'false') {
       return;
     } else {
@@ -43,6 +42,8 @@ export class MyorderComponent implements OnInit {
     UniversalService.Orders.next(false);
   }
   open(content: any, modal: any) {
+    console.log(modal);
+    
     this.selectedTable = modal
     this.modalReference = this.modalService.open(content, {
       centered: true,

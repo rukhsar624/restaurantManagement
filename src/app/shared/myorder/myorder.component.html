@@ -50,7 +50,7 @@
     <div class="col-sm-12">
       <div class="row">
         <div class="col-sm-4" *ngFor="let item of tables">
-          <button (click)="open(table, item)" class="table counterTbale">
+          <button (click)="open(counterTable, item)" class="table counterTbale">
             <h3>Table {{ item.no }}</h3>
           </button>
           <div class="actionBtnBox">
@@ -80,7 +80,7 @@
           currentPage: duePage,
           totalItems: total
         }">
-        <button (click)="open(table, item)" class="table counterTbale" [ngClass]="{
+        <button (click)="open(counterTable, item)" class="table counterTbale" [ngClass]="{
                 red: item.status == 'In process',
                 yellow: item.status == 'Ending',
                 green: item.status == 'Complete'
@@ -120,7 +120,7 @@
                 <td>{{ item.status ? item.status : "N/A" }}</td>
                 <td>
                   <div class="toggle d-flex align-items-center justify-content-center">
-                    <button class="noBg" (click)="open(table, item)"> <i class="fa fa-eye"></i> </button>
+                    <button class="noBg" (click)="open(counterTable, item)"> <i class="fa fa-eye"></i> </button>
                   </div>
                 </td>
               </tr>
@@ -163,9 +163,6 @@
       </div>
     </div>
     <div class="col-sm-2 d-flex justify-content-end align-items-center cstmDropDown">
-      <!-- <ng-select [(ngModel)]="selectedView">
-        <ng-option *ngFor="let view of views" [value]="view.name">{{view.name}}</ng-option>
-      </ng-select> -->
       <ng-select [(ngModel)]="selectedSort">
         <ng-option *ngFor="let sort of sorts" [value]="sort.name">{{sort.name}}</ng-option>
       </ng-select>
@@ -277,6 +274,84 @@
               <div>
                 <button class="btm-btn bg-dng" (click)="proceed(); open(completeOrder, 'complete')">
                   Done
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ng-container>
+<!-- counter table -->
+<ng-container>
+  <ng-template #counterTable let-modal>
+    <div class="modal-body checkoutModal completed">
+      <div class="container">
+        <button class="backBtn mb-3" (click)="proceed();">
+          <i class="fa fa-arrow-left"></i>
+        </button>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="table tableModal counterTable">
+              <h3 class="orderHead zIndexUp">Table {{ selectedTable?.no }}</h3>
+              <h5 class="orderNo mt-3 zIndexUp">Order No. 123123</h5>
+              <div class="container zIndexUp">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <app-cartitem></app-cartitem>
+                    <app-cartitem></app-cartitem>
+                  </div>
+                </div>
+              </div>
+              <div class="hr zIndexUp"></div>
+              <div class="totalSection zIndexUp">
+                <div class="subtotal">
+                  <h5>Sub Total</h5>
+                  <h5>$236</h5>
+                </div>
+                <div class="extraCharges">
+                  <h6>GST Tax</h6>
+                  <h6>13%</h6>
+                </div>
+                <div class="extraCharges">
+                  <h6>Discount</h6>
+                  <h6>0%</h6>
+                </div>
+                <div class="grandtotal">
+                  <h5>Grand Total</h5>
+                  <h5>$250</h5>
+                </div>
+              </div>
+              <div class="checkoutBtn zIndexUp text-center">
+                <button id="checkoutBtn" (click)="open(viewOrder, 'checkout')">
+                  Checkout
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="d-flex justify-content-center align-items-center flex-column h-100">
+              <h1 class="orderHead mb-3">Status</h1>
+              <h6 class="orderHead mt-3">Timer</h6>
+              <div>
+                <button class="timerCapsule">20:00</button>
+              </div>
+              <h6 class="orderHead mt-3">Reminder</h6>
+              <div>
+                <button class="timerCapsule bluebackground">05:00</button>
+              </div>
+              <div class="readyServe">
+                <p>Ready to serve</p>
+                <button class="timerCapsule bluebackground">{{selectedTable.status}}</button>
+              </div>
+
+
+              <h6 class="mt-3 orderStatus">Waiter</h6>
+              <h5 class="orderStatus">{{ selectedTable?.waiter }}</h5>
+              <div>
+                <button class="btm-btn pinkbackground" (click)="proceed(); open(completeOrder, 'complete')">
+                  Edit Order
                 </button>
               </div>
             </div>

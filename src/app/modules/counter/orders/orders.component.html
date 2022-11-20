@@ -3,11 +3,7 @@
     <a ngbNavLink>Current Orders</a>
     <ng-template ngbNavContent>
       <div class="container">
-        <!-- <div class="row"> -->
-          <app-item *ngIf="!itemDetailView && !MyOrderView" [data]="MenuSelected"></app-item>
-          <app-item-detail *ngIf="itemDetailView && !MyOrderView" [data]="itemDetail"></app-item-detail>
-          <app-myorder *ngIf="MyOrderView" [tables]="tables" [opt]="'counter currentorders'"></app-myorder>
-        <!-- </div> -->
+          <app-myorder *ngIf="!MyOrderView" [tables]="Waitertables" [opt]="'counter currentorders'"></app-myorder>
       </div>
       <div *ngIf="modalView" class="modalbtn">
         <button id="qrCode" hidden (click)="open(qr, 'qr')"></button>
@@ -18,11 +14,7 @@
     <a ngbNavLink>All Orders</a>
     <ng-template ngbNavContent>
       <div class="container">
-        <!-- <div class="row"> -->
-          <app-item *ngIf="!itemDetailView && !MyOrderView" [data]="MenuSelected"></app-item>
-          <app-item-detail *ngIf="itemDetailView && !MyOrderView" [data]="itemDetail"></app-item-detail>
-          <app-myorder *ngIf="MyOrderView" [tables]="tables" [opt]="'counter allorders'"></app-myorder>
-        <!-- </div> -->
+          <app-myorder *ngIf="!MyOrderView" [tables]="Waitertables" [opt]="'counter allorders'"></app-myorder>
       </div>
     </ng-template>
   </li>
@@ -30,11 +22,7 @@
     <a ngbNavLink>By Waiters</a>
     <ng-template ngbNavContent>
       <div class="container">
-        <!-- <div class="row"> -->
-          <app-item *ngIf="!itemDetailView && !MyOrderView" [data]="MenuSelected"></app-item>
-          <app-item-detail *ngIf="itemDetailView && !MyOrderView" [data]="itemDetail"></app-item-detail>
-          <app-myorder *ngIf="MyOrderView" [tables]="Waitertables" [opt]="'counter byWaiters'"></app-myorder>
-        <!-- </div> -->
+          <app-myorder *ngIf="!MyOrderView" [tables]="Waitertables" [opt]="'counter byWaiters'"></app-myorder>
       </div>
     </ng-template>
   </li>

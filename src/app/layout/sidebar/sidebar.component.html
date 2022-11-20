@@ -18,14 +18,14 @@
         class="activeSide activeSideMenulink"
           [class]="menuItem.headTitle1 ? 'sidebar-main-title' : 'sidebar-list'"
           *ngFor="let menuItem of menuItems; let i = index"
-          [ngClass]="{ active: menuItem.active}"
+          [ngClass]="{ linkActive: menuItem.active}"
         >
           <!-- Submenu -->
           <a
             href="javascript:void(0)"
             class="sidebar-link sidebar-title"
             [class.link-nav]="!menuItem.children"
-            [ngClass]="{ active: menuItem.active, 'disable': !sidebarEnable }"
+            [ngClass]="{ linkActive: menuItem.active, 'disable': !sidebarEnable }"
             *ngIf="menuItem.type === 'sub'"
             (click)="toggletNavActive(menuItem)"
             ng-disabled="!sidebarEnable"
@@ -52,7 +52,7 @@
             
             class="activeSide"
               *ngFor="let childrenItem of menuItem.children"
-              [ngClass]="{ active: childrenItem.active }"
+              [ngClass]="{ linkActive: childrenItem.active }"
             >
               <!-- Submenu Link -->
               <button [disabled]="!sidebarEnable" [ngClass]="{'disable': !sidebarEnable}" (click)="routerHead($event, childrenItem.title)">
@@ -71,7 +71,7 @@
             <a
               class="sidebar-link sidebar-title"
               [class.link-nav]="!menuItem.children"
-              [ngClass]="{ active: menuItem.active }"
+              [ngClass]="{ linkActive: menuItem.active }"
               *ngIf="menuItem.type === 'link'"
             >
               <div class="menuIcon">
