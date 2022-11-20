@@ -56,7 +56,7 @@ export class OrdersComponent implements OnInit {
     if (path) {
       this.router.navigate([`kitchen/${path}`]);
     }
-    UniversalService.headerHeading.subscribe((res: string) => {
+    UniversalService.routePath.subscribe((res: string) => {
       let path = res.toLowerCase();
       this.router.navigate([`kitchen/${path}`]);
       this.cd.detectChanges();

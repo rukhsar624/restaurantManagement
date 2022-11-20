@@ -28,7 +28,7 @@ export class ItemComponent implements OnInit {
   constructor() {}
   ngOnChanges(changes: SimpleChanges) {
     this.MenuItems = this.data;
-    this.data.map((e: Menu) => {
+    this.data?.map((e: Menu) => {
       this.ItemNames.push({
         firstName: e.item.split(' ')[0],
         lastName: e.item.split(' ')[1],

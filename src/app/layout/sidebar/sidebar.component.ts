@@ -21,11 +21,13 @@ export class SidebarComponent implements OnInit {
   public menuActive: boolean = false;
   public SubMenu: boolean = false;
   public activeImage = true;
-  public waiter: boolean;
+  public waiter: any;
   public kitchen: boolean;
+  public counter: boolean;
   public sidebarEnable: boolean = true;
   public serviceheading: any;
   public href: string;
+  public role: any;
   public menuItem = [
     {
       path: 'starters',
@@ -70,57 +72,93 @@ export class SidebarComponent implements OnInit {
       type: 'link',
     },
   ];
+  public counterItem = [
+    {
+      path: 'orders',
+      title: 'Orders',
+      icon: 'assets/sidebarIcons/starter.png',
+      type: 'link',
+    },
+    {
+      title: 'Menu',
+      type: 'sub',
+      icon: 'assets/sidebarIcons/maincourse.png',
+      active: false,
+      children: [
+        { path: 'fast-food', title: 'Fast Food', type: 'link' },
+        { path: 'bbq', title: 'BBQ', type: 'link' },
+      ],
+    },
+    {
+      path: 'staff',
+      title: 'Staff',
+      icon: 'assets/sidebarIcons/starter.png',
+      type: 'link',
+    },
+    {
+      path: 'sale&expense',
+      title: 'Sale & Expense',
+      icon: 'assets/sidebarIcons/starter.png',
+      type: 'link',
+    },
+    {
+      path: 'reportings',
+      title: 'Reportings',
+      icon: 'assets/sidebarIcons/starter.png',
+      type: 'link',
+    },
+    {
+      path: 'bookings',
+      title: 'Bookings',
+      icon: 'assets/sidebarIcons/starter.png',
+      type: 'link',
+    },
+    {
+      path: 'support',
+      title: 'Support',
+      icon: 'assets/sidebarIcons/starter.png',
+      type: 'link',
+    },
+  ];
   constructor(
     private location: Location,
     private cd: ChangeDetectorRef,
     public navServices: NavService,
     private helper: HelperService,
     private router: Router
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.href = this.location.path();
-    if (this.href == '/customers') {
-      this.waiter = this.helper.urlCheck(this.href, 'customers');
+    if (this.href == '/welcome-counter' || this.href.split('/')[1] == 'counter') {
+      UniversalService.headerHeading.next('');
+      this.role = this.helper.urlCheck(this.href, 'welcome-counter', 'counter');
     }
-    if (this.href == '/welcome-customers') {
-      this.waiter = this.helper.urlCheck(this.href, 'welcome-customers');
+    if (this.href == '/welcome-customers' || this.href == '/customers') {
+      UniversalService.headerHeading.next('Starters');
+      this.role = this.helper.urlCheck(this.href, 'welcome-customers', 'customers');
     }
-    if (this.href == '/waiters') {
-      this.waiter = this.helper.urlCheck(this.href, 'waiters');
+    if (this.href == '/welcome-waiters' || this.href == '/waiters') {
+      UniversalService.headerHeading.next('Starters');
+      this.role = this.helper.urlCheck(this.href, 'welcome-waiters', 'waiters');
     }
-    if (this.href == '/welcome-waiters') {
-      this.waiter = this.helper.urlCheck(this.href, 'welcome-waiters');
-    }
-    if (this.href.split('/')[1] == 'kitchen') {
-      this.kitchen = this.helper.urlCheck(
-        `/${this.href.split('/')[1]}`,
-        'kitchen'
-      );
-      this.waiter = this.helper.urlCheck(
-        `/${this.href.split('/')[1]}`,
-        'kitchen'
-      );
-      localStorage.setItem('lastVisitheadingPage', 'Orders');
+    if (this.href == 'welcome-kitchen' || this.href.split('/')[1] == 'kitchen') {
+      if(!localStorage.hasOwnProperty('lastVisitheadingPage')){
+        localStorage.setItem('lastVisitheadingPage', 'Orders');
+      }
       UniversalService.headerHeading.next('Orders');
+      this.role = this.helper.urlCheck(this.href, 'welcome-kitchen', 'kitchen');
     }
-    if (this.href == '/welcome-kitchen') {
-      this.kitchen = this.helper.urlCheck(this.href, 'welcome-kitchen');
-      this.waiter = this.helper.urlCheck(this.href, 'welcome-kitchen');
-      localStorage.setItem('lastVisitheadingPage', 'Orders');
-      UniversalService.headerHeading.next('Orders');
-    }
-    if (this.href == '') {
-      this.waiter = true;
-    }
-    if (!this.waiter) {
-      localStorage.setItem('orderView', 'false');
-    }
-    if (this.waiter) {
-      localStorage.setItem('orderView', 'true');
-    }
-    if (this.kitchen) {
-      localStorage.setItem('kitchenView', 'true');
-    }
+    console.log(this.role);
+    
+    if(this.role == 'customers') this.menuItems = this.menuItem;
+    if(this.role == 'waiters') {
+      this.menuItems = this.menuItem;
+      if(!localStorage.hasOwnProperty('orderView')){
+        localStorage.setItem('orderView', 'true')
+      }
+    };
+    if(this.role == 'kitchen') this.menuItems = this.kitchenItem;
+    if(this.role == 'counter') this.menuItems = this.counterItem;
     this.observe();
     let vistHead = localStorage.getItem('lastVisitheadingPage');
     if (localStorage.getItem('lastVisitheadingPage') != null) {
@@ -128,22 +166,17 @@ export class SidebarComponent implements OnInit {
     } else {
       this.routerHead(null, 'Starters');
     }
-    if (
-      localStorage.getItem('orderView') == 'false' ||
-      localStorage.getItem('orderView') == null
-    ) {
-      this.sidebarEnable = false;
-    } else {
-      this.sidebarEnable = true;
+    if(localStorage.hasOwnProperty('orderView')){
+      if (
+        localStorage.getItem('orderView') == 'true' ||
+        localStorage.getItem('orderView') == null
+      ) {
+        this.sidebarEnable = false;
+      } else {
+        this.sidebarEnable = true;
+      }
     }
-    if (
-      localStorage.getItem('kitchenView') == 'true' ||
-      localStorage.getItem('kitchenView') != null
-    ) {
-      this.menuItems = this.kitchenItem;
-    } else {
-      this.menuItems = this.menuItem;
-    }
+    else this.sidebarEnable = true
     this.menuItems?.map((e: any) => {
       if (e.title == localStorage.getItem('lastVisitheadingPage')) {
         e['active'] = true;
@@ -173,6 +206,17 @@ export class SidebarComponent implements OnInit {
   }
   routerHead(event: any, heading: any) {
     UniversalService.headerHeading.next(heading);
+    let path = heading.replace(/[\s,]/g, '')
+    this.menuItems?.map((e:any)=>{
+      if(e?.type == 'sub'){
+        e?.children?.map((v:any)=>{
+          if(v.title == heading) UniversalService.routePath.next('menu');
+        })
+      }
+      if(e?.type != 'sub' && e.title == heading){
+        UniversalService.routePath.next(path);
+      }
+    })
     localStorage.setItem('lastVisitheadingPage', heading);
     UniversalService.itemDetailView.next(false);
     localStorage.setItem('heading', heading);
@@ -205,10 +249,10 @@ export class SidebarComponent implements OnInit {
       // this.toggletNavActive(res)
     });
     UniversalService.SideBar.subscribe((res: boolean) => {
-      if (!res) {
-        this.sidebarEnable = false;
-      } else {
+      if (res) {
         this.sidebarEnable = true;
+      } else {
+        this.sidebarEnable = false;
       }
       this.cd.detectChanges();
     });

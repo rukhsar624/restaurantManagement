@@ -23,6 +23,8 @@
   }
   .verticalMenu {
     background: #ffffff17;
+    height: 80vh;
+    overflow-y: scroll;
   }
   // .activeSideMenulink {
   //   border-radius: 0;
@@ -57,7 +59,7 @@
     width: 100%;
     text-align: center;
     .sidebar-list {
-      padding-left: 85px;
+      padding-left: 55px;
       width: 100%;
       display: flex;
       justify-content: flex-start;
@@ -138,4 +140,9 @@
 .active{
   border-radius: 0;
     background-color: #1717178c;
+}
+.sidebar-link{
+  span{
+    text-align: left;
+  }
 }

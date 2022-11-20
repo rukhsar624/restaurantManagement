@@ -35,6 +35,12 @@ const routes: Routes = [
     data: { animation: 'welcomePage' },
   },
   {
+    path: 'welcome-counter',
+    component: WelcomeComponent,
+    canActivate: [InnerGuard],
+    data: { animation: 'welcomePage' },
+  },
+  {
     path: 'add-cart',
     component: CartComponent,
     canActivate: [AuthGuard],
@@ -57,6 +63,7 @@ const routes: Routes = [
 
   },
   { path: 'kitchen', loadChildren: () => import('./modules/kitchen/kitchen.module').then(m => m.KitchenModule) },
+  { path: 'counter', loadChildren: () => import('./modules/counter/counter.module').then(m => m.CounterModule) },
 ];
 
 @NgModule({

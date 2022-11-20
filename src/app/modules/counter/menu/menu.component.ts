@@ -1,19 +1,15 @@
-import { UniversalService } from './../../services/universal.service';
-import { NavService } from './../../services/nav.service';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NavService } from 'src/app/services/nav.service';
+import { UniversalService } from 'src/app/services/universal.service';
 
-export interface Menu {
-  img: string;
-  item: string;
-  description: string;
-  price: number;
-}
 @Component({
-  selector: 'app-customers',
-  templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.scss'],
+  selector: 'app-menu',
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.scss']
 })
-export class CustomersComponent implements OnInit {
+export class MenuComponent implements OnInit {
+
   public Menus: any = [
     {
       Starters: [
@@ -160,18 +156,19 @@ export class CustomersComponent implements OnInit {
   public MenuSelected: any;
   public itemDetailView: boolean = false;
   public itemDetail:any;
-  constructor(private cd: ChangeDetectorRef) {}
+  public theBoundCallback: Function;
+  constructor(private cd: ChangeDetectorRef, private router:Router) {}
 
   ngOnInit(): void {
-    if (localStorage.getItem('heading') != null) {
       this.Menus.map((e: any) => {
-        const word: any = localStorage.getItem('heading');
+        console.log(e);
+        const word: any = 'Fast_Food';
         if (e.hasOwnProperty(word)) {
           this.MenuSelected = e[word];
         }
       });
-    }
     this.observe();
+    this.observePath();
   }
   async observe() {
     UniversalService.headerHeading.subscribe((res: string) => {
@@ -215,4 +212,15 @@ export class CustomersComponent implements OnInit {
       this.cd.detectChanges();
     })
   }
+  async observePath() {
+    // if (path) {
+    //   this.router.navigate([`counter/${path}`]);
+    // }
+    UniversalService.routePath.subscribe((res: string) => {
+      let path = res.toLowerCase();
+      this.router.navigate([`counter/${path}`]);
+      this.cd.detectChanges();
+    });
+  }
+
 }

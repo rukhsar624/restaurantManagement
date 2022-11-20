@@ -39,11 +39,11 @@ export class AppComponent {
     } else {
       this.login = false;
     }
-    if (localStorage.getItem('cart') == 'true') {
-      this.cart = true;
-    } else {
-      this.cart = false;
-    }
+    // if (localStorage.getItem('cart') == 'true') {
+    //   this.cart = true;
+    // } else {
+    //   this.cart = false;
+    // }
     this.observe();
   }
   async observe() {

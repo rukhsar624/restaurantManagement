@@ -4,11 +4,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class HelperService {
-  urlCheck(r: string, value: string) {
+  urlCheck(r: string, firstValue: string, secondValue: string) {
     let url = r.split('/')[1];
-    if (url == value) {
-      return true;
-    } else {
+    if (url == firstValue || url == secondValue) {
+      return secondValue;
+    }
+    else {
       return false;
     }
   }

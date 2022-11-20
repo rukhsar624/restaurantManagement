@@ -17,23 +17,15 @@ import { Location } from '@angular/common';
 export class HeaderComponent implements OnInit {
   public heading: any = localStorage.getItem('lastVisitheadingPage') ? localStorage.getItem('lastVisitheadingPage') : "Starters";
   public href: string = 'null';
-  public cartButton: boolean = true;
+  public cartButton: boolean = false;
   public headingShow: boolean = true;
-  public waiter: boolean = false;
-  constructor(private cd: ChangeDetectorRef , private router:Router, private helper:HelperService,
-    private location: Location, private AuthGuarDService:AuthGuardService) {}
-    text: any = localStorage.getItem('lastVisitheadingPage') ? localStorage.getItem('lastVisitheadingPage') : "Starters";
+  public waiter: any = false;
+  constructor(private cd: ChangeDetectorRef, private router: Router, private helper: HelperService,
+    private location: Location, private AuthGuarDService: AuthGuardService) { }
+  text: any = localStorage.getItem('lastVisitheadingPage') ? localStorage.getItem('lastVisitheadingPage') : "Starters";
   ngOnInit(): void {
-    this.text = localStorage.getItem('lastVisitheadingPage') ? localStorage.getItem('lastVisitheadingPage') : "Starters"; 
-  this.heading = localStorage.getItem('lastVisitheadingPage') ? localStorage.getItem('lastVisitheadingPage') : "Starters";
-
-    if (localStorage.getItem('cart') == 'true') {
-      this.cartButton = true;
-      this.headingShow = false;
-    } else {
-      this.cartButton = false;
-      this.headingShow = true;
-    }
+    this.text = localStorage.getItem('lastVisitheadingPage') ? localStorage.getItem('lastVisitheadingPage') : "Starters";
+    this.heading = localStorage.getItem('lastVisitheadingPage') ? localStorage.getItem('lastVisitheadingPage') : "Starters";
     this.checkUrl()
     this.observe();
   }
@@ -56,13 +48,13 @@ export class HeaderComponent implements OnInit {
       this.cd.detectChanges();
     });
     UniversalService.modules.subscribe((res: boolean) => {
-      if(res){
+      if (res) {
         this.checkUrl()
       }
       this.cd.detectChanges();
     });
   }
-  
+
   currentState = 'hidden';
 
   changeText() {
@@ -78,25 +70,28 @@ export class HeaderComponent implements OnInit {
     }
   }
   cartShow() {
+    console.log(this.cartButton);
+    
     this.cartButton = !this.cartButton;
     if (this.cartButton) {
       UniversalService.cartShow.next(true);
     } else {
       UniversalService.cartShow.next(false);
     }
+    console.log(this.cartButton);
+
   }
-  logout(){
+  logout() {
     localStorage.clear()
     AuthService.signin.next(false)
     UniversalService.cartShow.next(false);
-    // this.AuthGuarDService.logout()
     this.router.navigate(['welcome-customers'])
   }
-  checkUrl(){
+  checkUrl() {
     this.href = this.location.path()
-    this.waiter = this.helper.urlCheck(this.href, 'waiters')
+    this.waiter = this.helper.urlCheck(this.href, 'waiters', 'waiters')
   }
-  myOrders(){
+  myOrders() {
     UniversalService.cartShow.next(false);
     UniversalService.Orders.next(true)
     // localStorage.setItem('')

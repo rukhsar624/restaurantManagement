@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class UniversalService {
   public static headerHeading: Subject<any> = new Subject<any>();
+  public static routePath: Subject<any> = new Subject<any>();
   public static cartShow: Subject<any> = new Subject<any>();
   public static checkoutModal: Subject<any> = new Subject<any>();
   public static Menu: Subject<any> = new Subject<any>();

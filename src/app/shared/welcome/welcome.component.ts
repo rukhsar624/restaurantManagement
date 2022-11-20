@@ -12,17 +12,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
   href:string
-  skip:boolean = true;
+  skip:any = true;
   url:string;
   constructor(private router: Router, private helper:HelperService, private authGuardService: AuthGuardService) { }
 
   ngOnInit(): void {
     this.href = this.router.url;
     if(this.helper.urlSplit(this.href) == 'welcome-waiters'){
-      this.skip = this.helper.urlCheck(this.href, 'welcome-waiters')
+      this.skip = this.helper.urlCheck(this.href, 'welcome-waiters', 'waiters')
     }
     if(this.helper.urlSplit(this.href) == 'welcome-kitchen'){
-      this.skip = this.helper.urlCheck(this.href, 'welcome-kitchen')
+      this.skip = this.helper.urlCheck(this.href, 'welcome-kitchen', 'kitchen')
     }
     if(this.helper.urlSplit(this.href) == 'welcome-customers'){
       this.skip = false
@@ -41,6 +41,10 @@ export class WelcomeComponent implements OnInit {
     if(this.helper.urlSplit(this.href) == 'welcome-kitchen'){
       this.router.navigate(['/kitchen'])
       this.authGuardService.login('kitchen')
+    }
+    if(this.helper.urlSplit(this.href) == 'welcome-counter'){
+      this.router.navigate(['/counter'])
+      this.authGuardService.login('counter')
     }
     AuthService.signin.next(true)
     UniversalService.modules.next(true)
