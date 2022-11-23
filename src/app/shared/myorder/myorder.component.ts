@@ -1,6 +1,7 @@
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UniversalService } from './../../services/universal.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-myorder',
@@ -14,7 +15,9 @@ export class MyorderComponent implements OnInit {
   selectedTable: any;
   duePage: any;
   total: any;
-  constructor(private modalService: NgbModal) {}
+  selectedCategory: any;
+  selectedCategoryName: any;
+  constructor(private modalService: NgbModal, private router: Router, private cd: ChangeDetectorRef) { }
   views = [
     { id: 1, name: 'Grid View' },
     { id: 2, name: 'List View' },
@@ -26,13 +29,8 @@ export class MyorderComponent implements OnInit {
   ];
   selectedSort: any = this.sorts[0].name;
   ngOnInit(): void {
-    console.log(this.selectedView);
-    // UniversalService.SideBar.next(false);
-    if (localStorage.getItem('orderView') == 'false') {
-      return;
-    } else {
-      localStorage.setItem('orderView', 'true');
-    }
+    UniversalService.headerHeading.next(localStorage.getItem('heading'))
+    this.observe()
   }
   addTable() {
     UniversalService.TableModal.next(true);
@@ -42,17 +40,17 @@ export class MyorderComponent implements OnInit {
     UniversalService.Orders.next(false);
   }
   open(content: any, modal: any) {
-    console.log(modal);
-    
     this.selectedTable = modal
     this.modalReference = this.modalService.open(content, {
       centered: true,
       backdrop: 'static',
       windowClass: 'checkoutModal',
-      size:'xl'
+      size: 'xl'
     });
   }
   proceed() {
     this.modalReference.close();
+  }
+  async observe() {
   }
 }

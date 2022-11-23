@@ -214,14 +214,31 @@ export class SidebarComponent implements OnInit {
   routerHead(event: any, heading: any) {
     UniversalService.headerHeading.next(heading);
     let path = heading.replace(/[\s,]/g, '')
+    console.log(path);
+    this.menuItems?.map((e:any)=>{
+      if(e?.type == 'sub'){
+        console.log(e);
+      }
+    })
     this.menuItems?.map((e:any)=>{
       if(e?.type == 'sub'){
         e?.children?.map((v:any)=>{
-          if(v.title == heading) UniversalService.routePath.next('menu');
+          if(v.title == heading) {
+            // debugger
+            setTimeout(() => {
+              UniversalService.routePath.next('menu');
+            }, 500);
+          }
+          else{
+            return
+          }
         })
       }
       if(e?.type != 'sub' && e.title == heading){
-        UniversalService.routePath.next(path);
+        // debugger
+        setTimeout(() => {
+          UniversalService.routePath.next(path);
+        }, 500);
       }
     })
     localStorage.setItem('lastVisitheadingPage', heading);
@@ -254,7 +271,7 @@ export class SidebarComponent implements OnInit {
       this.serviceheading = res;
       this.cd.detectChanges();
       // this.toggletNavActive(res)
-    });
+    }),(err:any)=>console.log(err);;
     UniversalService.SideBar.subscribe((res: boolean) => {
       if (res) {
         this.sidebarEnable = true;
@@ -262,7 +279,7 @@ export class SidebarComponent implements OnInit {
         this.sidebarEnable = false;
       }
       this.cd.detectChanges();
-    });
+    }),(err:any)=>console.log(err);;
     
   }
 }

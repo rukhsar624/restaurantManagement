@@ -10,7 +10,36 @@ import { UniversalService } from 'src/app/services/universal.service';
 export class StaffComponent implements OnInit {
 
   constructor(private router:Router, private cd:ChangeDetectorRef) { }
-
+  public Staff: any = [      
+        {
+          id: 1,
+          Name: 'John',
+          position: 'Waiter',
+          shift: 'Morning',
+          tables: 'T1,T2,T3,T4',
+        },
+        {
+          id: 1,
+          Name: 'John',
+          position: 'Manager',
+          shift: 'Morning',
+          tables: 'T1,T2,T3,T4',
+        },
+        {
+          id: 1,
+          Name: 'John Sandwich',
+          position: 'Waiter',
+          shift: 'Morning',
+          tables: 'T1,T2,T3,T4',
+        },
+        {
+          id: 1,
+          Name: 'John',
+          position: 'Waiter',
+          shift: 'Morning',
+          tables: 'T1,T2,T3,T4',
+        }
+  ];
   ngOnInit(): void {
     this.observe('staff');
   }

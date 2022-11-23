@@ -108,7 +108,7 @@
                   of: tables
                     | paginate
                       : {
-                          itemsPerPage: 3,
+                          itemsPerPage: 5,
                           currentPage: duePage,
                           totalItems: total
                         }
@@ -209,6 +209,136 @@
         </table>
       </div>
       <p class="exportFile"> <i class="fa fa-file"></i> Export File</p>
+    </div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <p class="heading">Showing 1 to 10 of 26 Times</p>
+        </div>
+        <div class="col-sm-6 d-flex justify-content-end">
+          <pagination-controls previousLabel="&lsaquo;" nextLabel="&rsaquo;" (pageChange)="duePage = $event">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container position-relative" *ngIf="opt == 'menu'">
+  <div class="row">
+    <div class="col-sm-4 d-flex justify-content-start align-items-center">
+      <div class="searchField mt-1 w-100">
+        <input type="text" class="w-100" placeholder="Search Item" />
+        <i class="fa fa-search"></i>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <label class="dateLabel">Date Range</label>
+      <div class="searchField mt-1 dateForm">
+        <input type="text" placeholder="From" />
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <label for=""></label>
+      <div class="searchField mt-1 dateForm">
+        <input type="text" placeholder="To" />
+      </div>
+    </div>
+    <div class="col-sm-2 d-flex justify-content-end align-items-center cstmDropDown">
+      <ng-select [(ngModel)]="selectedSort">
+        <ng-option *ngFor="let sort of sorts" [value]="sort.name">{{sort.name}}</ng-option>
+      </ng-select>
+    </div>
+    <div class="col-sm-12 mt-1 listView">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Code</th>
+              <th scope="col">Item Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Price</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="
+                  let i = index;
+                  let item;
+                  of: tables
+                    | paginate
+                      : {
+                          itemsPerPage: 5,
+                          currentPage: duePage,
+                          totalItems: total
+                        }
+                ">
+              <th scope="row">{{ i }}</th>
+              <td>{{ item.itemName ? item.itemName : "N/A" }}</td>
+              <td>{{ item.category ? item.category : "N/A" }}</td>
+              <td>{{ item.price ? item.price : "N/A" }}</td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="exportFile"> <i class="fa fa-file"></i> Export File</p>
+    </div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <p class="heading">Showing 1 to 10 of 26 Times</p>
+        </div>
+        <div class="col-sm-6 d-flex justify-content-end">
+          <pagination-controls previousLabel="&lsaquo;" nextLabel="&rsaquo;" (pageChange)="duePage = $event">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container position-relative" *ngIf="opt == 'staff'">
+  <div class="row">
+    <div class="col-sm-12 d-flex justify-content-end">
+      <label class="addBtn mt-5">
+        <i class="fa fa-plus"></i>
+        Add Employee
+      </label>
+    </div>
+    <div class="col-sm-12 mt-1 listView">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Employee Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Position</th>
+              <th scope="col">Shift</th>
+              <th scope="col">Tables Assigned</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="
+                  let i = index;
+                  let item;
+                  of: tables
+                    | paginate
+                      : {
+                          itemsPerPage: 5,
+                          currentPage: duePage,
+                          totalItems: total
+                        }
+                ">
+              <th scope="row">{{ i }}</th>
+              <td>{{ item.Name ? item.Name : "N/A" }}</td>
+              <td>{{ item.position ? item.position : "N/A" }}</td>
+              <td>{{ item.shift ? item.shift : "N/A" }}</td>
+              <td>{{ item.tables ? item.tables : "N/A" }}</td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="exportFile staff"> <i class="fa fa-file"></i> Export File</p>
     </div>
     <div class="container">
       <div class="row align-items-center">
@@ -341,13 +471,13 @@
               <div>
                 <button class="timerCapsule bluebackground">05:00</button>
               </div>
-              <div class="readyServe">
-                <p>Ready to serve</p>
-                <button class="timerCapsule bluebackground">{{selectedTable.status}}</button>
+              <div class="readyServe mt-5 mb-5 position-relative">
+                <h5>Ready to serve</h5>
+                <button>{{selectedTable.status}}</button>
               </div>
 
 
-              <h6 class="mt-3 orderStatus">Waiter</h6>
+              <h6 class="mt-5 orderStatus">Waiter</h6>
               <h5 class="orderStatus">{{ selectedTable?.waiter }}</h5>
               <div>
                 <button class="btm-btn pinkbackground" (click)="proceed(); open(completeOrder, 'complete')">

@@ -18,7 +18,7 @@ export class ReportingsComponent implements OnInit {
     if (path) {
       this.router.navigate([`counter/${path}`]);
     }
-    UniversalService.headerHeading.subscribe((res: string) => {
+    UniversalService.routePath.subscribe((res: string) => {
       let path = res.toLowerCase();
       this.router.navigate([`counter/${path}`]);
       this.cd.detectChanges();

@@ -89,9 +89,6 @@
 .pinkbackground{
   background-color: #BB2B79 !important;
 }
-.backBtn {
-  margin-top: 1rem;
-}
 .statusBox {
   margin-left: 20px;
   p {
@@ -283,13 +280,18 @@
 }
 .listView{
   .table>:not(caption)>*>* {
-    min-width: 150px;
+    min-width: 120px;
     padding: 10px 0 !important;
       text-align: center;
   }
 }
 .dateLabel{
   font-size: 10px;
+}
+.heading,
+.dateLabel,
+.addBtn{
+  color: #fff;
 }
 .dateForm{
   input{
@@ -306,6 +308,10 @@
   .fa{
     font-size: 20px;
 }
+}
+.exportFile.staff{
+  bottom: -50px;
+    right: 20px;
 }
 .tableModal.counterTable{
   background: url('../../../assets/images/tableModalCover.png');
@@ -325,6 +331,21 @@
     border-radius: 10px;
   }
 }
-.zIndexUp{
-  z-index: 1000;
+
+.readyServe{
+  color: #fff;
+    background: linear-gradient(0deg, #00000091, #2c838373, #00ffff7d);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    button{
+      position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 30px;
+    border: none;
+    border-radius: 40px;
+    background-color: #2BBBBB;
+    }
 }

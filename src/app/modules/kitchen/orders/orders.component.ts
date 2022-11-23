@@ -21,6 +21,17 @@ export class OrdersComponent implements OnInit {
         { no: '01', name: 'Beef Burger', description:"lorem ipsum blah beef burger steak" },
         { no: '02', name: 'Chicken Steak', description:"lorem ipsum blah beef burger steak" },
         { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
       ],
       status: 'inprocess',
     },
@@ -35,6 +46,17 @@ export class OrdersComponent implements OnInit {
         { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
         { no: '01', name: 'Beef Burger', description:"lorem ipsum blah beef burger steak" },
         { no: '02', name: 'Chicken Steak', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
+        { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
         { no: '03', name: 'Chicken Thai Chilli', description:"lorem ipsum blah beef burger steak" },
       ],
       status: 'inprocess',
@@ -57,6 +79,7 @@ export class OrdersComponent implements OnInit {
       this.router.navigate([`kitchen/${path}`]);
     }
     UniversalService.routePath.subscribe((res: string) => {
+      console.log(res,"hellores");
       let path = res.toLowerCase();
       this.router.navigate([`kitchen/${path}`]);
       this.cd.detectChanges();

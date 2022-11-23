@@ -21,8 +21,16 @@ export class OrdersComponent implements OnInit {
     { no: '02', name:'Jennifer', amount:53, items:2, tables:'T2' , status: 'Ending', waiter:'Lawrence', payment:'Card', action:{process:'process',edit:'edit',cancel:'cancel'}},
     { no: '03', name:'Jennifer', amount:60, items:2, tables:'T3' , status: 'Ending', waiter:'Lawrence', payment:'Cash', action:{process:'process',edit:'edit',cancel:'cancel'}},
     { no: '04', name:'Jennifer', amount:100, items:2, tables:'T4' , status: 'In process', waiter:'Lawrence', payment:'Card', action:{process:'process',edit:'edit',cancel:'cancel'}},
+    { no: '04', name:'Jennifer', amount:100, items:2, tables:'T4' , status: 'In process', waiter:'Lawrence', payment:'Card', action:{process:'process',edit:'edit',cancel:'cancel'}},
+    { no: '04', name:'Jennifer', amount:100, items:2, tables:'T4' , status: 'In process', waiter:'Lawrence', payment:'Card', action:{process:'process',edit:'edit',cancel:'cancel'}},
+    { no: '04', name:'Jennifer', amount:100, items:2, tables:'T4' , status: 'In process', waiter:'Lawrence', payment:'Card', action:{process:'process',edit:'edit',cancel:'cancel'}},
     { no: '05', name:'Jennifer', amount:200, items:2, tables:'T5' , status: 'Complete', waiter:'Lawrence', payment:'Cash', action:{process:'process',edit:'edit',cancel:'cancel'}},
     { no: '06', name:'Jennifer', amount:14, items:2, tables:'T6' , status: 'In process', waiter:'Lawrence', payment:'Card', action:{process:'process',edit:'edit',cancel:'cancel'}},
+    { no: '06', name:'Jennifer', amount:14, items:2, tables:'T6' , status: 'In process', waiter:'Lawrence', payment:'Card', action:{process:'process',edit:'edit',cancel:'cancel'}},
+    { no: '06', name:'Jennifer', amount:14, items:2, tables:'T6' , status: 'In process', waiter:'Lawrence', payment:'Card', action:{process:'process',edit:'edit',cancel:'cancel'}},
+    { no: '06', name:'Jennifer', amount:14, items:2, tables:'T6' , status: 'In process', waiter:'Lawrence', payment:'Card', action:{process:'process',edit:'edit',cancel:'cancel'}},
+    { no: '04', name:'Jennifer', amount:100, items:2, tables:'T4' , status: 'In process', waiter:'Lawrence', payment:'Card', action:{process:'process',edit:'edit',cancel:'cancel'}},
+    { no: '07', name:'Jennifer', amount:34, items:2, tables:'T7' , status: 'Complete', waiter:'Lawrence', payment:'Cash', action:{process:'process',edit:'edit',cancel:'cancel'}},
     { no: '07', name:'Jennifer', amount:34, items:2, tables:'T7' , status: 'Complete', waiter:'Lawrence', payment:'Cash', action:{process:'process',edit:'edit',cancel:'cancel'}},
   ];
   constructor(private modalService: NgbModal, private cd:ChangeDetectorRef,private router:Router ) {}
@@ -30,7 +38,7 @@ export class OrdersComponent implements OnInit {
     if (path) {
       this.router.navigate([`counter/${path}`]);
     }
-    UniversalService.headerHeading.subscribe((res: string) => {
+    UniversalService.routePath.subscribe((res: string) => {
       let path = res.toLowerCase();
       this.router.navigate([`counter/${path}`]);
       this.cd.detectChanges();
@@ -68,9 +76,12 @@ export class OrdersComponent implements OnInit {
   async observe() {
     UniversalService.routePath.subscribe((res: string) => {
       let path = res.toLowerCase();
+      console.log(path,'hello')
       this.router.navigate([`counter/${path}`]);
+      // debugger
       this.cd.detectChanges();
-    });
+    }),(err:any)=>console.log(err);
+    ;
     UniversalService.cartShow.subscribe((res) => {
       if (res) {
         // this.Menus.map((e: any) => {
