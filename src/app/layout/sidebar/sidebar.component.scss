@@ -82,14 +82,11 @@
       a {
         padding-left: 80px;
         position: relative;
-        &::after {
-          content: "";
+        .fa {
           position: absolute;
           left: 45px;
           top: 50%;
-          width: 10px;
-          height: 2px;
-          background: #fff;
+          transform: translateY(-50%);
         }
       }
     }

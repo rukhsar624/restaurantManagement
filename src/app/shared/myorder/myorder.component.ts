@@ -29,7 +29,7 @@ export class MyorderComponent implements OnInit {
   ];
   selectedSort: any = this.sorts[0].name;
   ngOnInit(): void {
-    UniversalService.headerHeading.next(localStorage.getItem('heading'))
+    // UniversalService.headerHeading.next(localStorage.getItem('heading'))  
     this.observe()
   }
   addTable() {

@@ -57,10 +57,10 @@
               <!-- Submenu Link -->
               <button [disabled]="!sidebarEnable" [ngClass]="{'disable': !sidebarEnable}" (click)="routerHead($event, childrenItem.title)">
                 <a
-                  class="submenu-title"
-                  
-                  *ngIf="childrenItem.type === 'link'"
+                class="submenu-title"
+                *ngIf="childrenItem.type === 'link'"
                 >
+                <i class="fa {{ childrenItem.icon }}"></i>
                   <span>{{ childrenItem.title }}</span>
                 </a>
               </button>

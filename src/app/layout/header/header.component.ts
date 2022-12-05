@@ -94,6 +94,5 @@ export class HeaderComponent implements OnInit {
   myOrders() {
     UniversalService.cartShow.next(false);
     UniversalService.Orders.next(true)
-    // localStorage.setItem('')
   }
 }

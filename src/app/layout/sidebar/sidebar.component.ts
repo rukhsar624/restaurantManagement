@@ -85,8 +85,10 @@ export class SidebarComponent implements OnInit {
       icon: 'assets/sidebarIcons/maincourse.png',
       active: false,
       children: [
-        { path: 'fast-food', title: 'Fast Food', type: 'link' },
-        { path: 'bbq', title: 'BBQ', type: 'link' },
+        { path: 'fast-food', title: 'Fast Food', type: 'link', icon:'fa-minus' },
+        { path: 'bbq', title: 'BBQ', type: 'link', icon:'fa-minus' },
+        { path: 'addmenu', title: 'Add Menu', type: 'link', icon:'fa-plus' },
+        { path: 'addcategory', title: 'Category', type: 'link', icon:'fa-plus' },
       ],
     },
     {
@@ -148,8 +150,6 @@ export class SidebarComponent implements OnInit {
       UniversalService.headerHeading.next('Orders');
       this.role = this.helper.urlCheck(this.href, 'welcome-kitchen', 'kitchen');
     }
-    console.log(this.role);
-    
     if(this.role == 'customers') this.menuItems = this.menuItem;
     if(this.role == 'waiters') {
       this.menuItems = this.menuItem;
@@ -214,20 +214,14 @@ export class SidebarComponent implements OnInit {
   routerHead(event: any, heading: any) {
     UniversalService.headerHeading.next(heading);
     let path = heading.replace(/[\s,]/g, '')
-    console.log(path);
-    this.menuItems?.map((e:any)=>{
-      if(e?.type == 'sub'){
-        console.log(e);
-      }
-    })
     this.menuItems?.map((e:any)=>{
       if(e?.type == 'sub'){
         e?.children?.map((v:any)=>{
           if(v.title == heading) {
             // debugger
-            setTimeout(() => {
+            // setTimeout(() => {
               UniversalService.routePath.next('menu');
-            }, 500);
+            // }, 500);
           }
           else{
             return
@@ -236,9 +230,9 @@ export class SidebarComponent implements OnInit {
       }
       if(e?.type != 'sub' && e.title == heading){
         // debugger
-        setTimeout(() => {
+        // setTimeout(() => {
           UniversalService.routePath.next(path);
-        }, 500);
+        // }, 500);
       }
     })
     localStorage.setItem('lastVisitheadingPage', heading);

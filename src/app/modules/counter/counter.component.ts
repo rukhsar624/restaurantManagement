@@ -15,8 +15,6 @@ export class CounterComponent implements OnInit {
     this.observe('orders')
   }
   async observe(path:string) {
-    console.log(path,"hellopath");
-    
     if(path){
       this.router.navigate([`counter/${path}`])
     }

@@ -42,8 +42,8 @@
     border-radius: 10px;
   }
 }
-.counterTbale{
-  background: url('../../../assets/images/tableCover.png');
+.counterTbale {
+  background: url("../../../assets/images/tableCover.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -71,23 +71,23 @@
 .yellow {
   color: #e1e36a !important;
 }
-.blue{
-  color: #2B7EA1 !important;
+.blue {
+  color: #2b7ea1 !important;
 }
 .redbackground {
   background-color: #e36a6a !important;
 }
 .greenbackground {
-  background-color: #2BA18C !important;
+  background-color: #2ba18c !important;
 }
 .yellowbackground {
   background-color: #e1e36a !important;
 }
-.bluebackground{
-  background-color: #2B7EA1 !important;
+.bluebackground {
+  background-color: #2b7ea1 !important;
 }
-.pinkbackground{
-  background-color: #BB2B79 !important;
+.pinkbackground {
+  background-color: #bb2b79 !important;
 }
 .statusBox {
   margin-left: 20px;
@@ -114,31 +114,37 @@
     background-color: #5cf07d;
   }
 }
-.tableModal.table{
+.tablePadd {
+  padding: 3rem;
+}
+.detailsSec {
+}
+.tableModal.table {
   margin-top: 0;
   height: 100%;
   background: none;
-  &::after{
-    left:-20px;
+  &::after {
+    left: -20px;
     height: 100%;
   }
   .orderNo,
-  h3,p{
+  h3,
+  p {
     margin: 0;
     color: #fff;
     margin-left: 10px;
   }
-  hr{
+  hr {
     color: #fff;
   }
 }
 .orderHead,
-.orderStatus{
+.orderStatus {
   color: #fff;
   font-family: josefinsemiregular;
   margin: 0;
 }
-.orderHead{
+.orderHead {
   font-family: josefinbold;
 }
 .checkoutModal {
@@ -260,67 +266,67 @@
   margin-left: 20px;
   margin-top: 20px;
 }
-.actionBtn{
+.actionBtn {
   border: none;
   color: #fff;
   border-radius: 100px;
   // min-width: 150px;
-  margin:5px 10px;
+  margin: 5px 10px;
   padding: 5px 1.5rem;
 }
-.fa{
+.fa {
   font-size: 10px;
 }
-.cstmHeight{
+.cstmHeight {
   height: 70vh;
   overflow-y: scroll;
 }
-.ng-select{
+.ng-select {
   min-width: 150px;
 }
-.listView{
-  .table>:not(caption)>*>* {
+.listView {
+  .table > :not(caption) > * > * {
     min-width: 120px;
     padding: 10px 0 !important;
-      text-align: center;
+    text-align: center;
   }
 }
-.dateLabel{
+.dateLabel {
   font-size: 10px;
 }
 .heading,
 .dateLabel,
-.addBtn{
+.addBtn {
   color: #fff;
 }
-.dateForm{
-  input{
+.dateForm {
+  input {
     padding-left: 10px;
   }
 }
-.exportFile{
+.exportFile {
   margin: 0;
   color: #fff;
   position: absolute;
   bottom: 10px;
   right: 40px;
   cursor: pointer;
-  .fa{
+  .fa {
     font-size: 20px;
+  }
 }
-}
-.exportFile.staff{
+.exportFile.staff {
   bottom: -50px;
-    right: 20px;
+  right: 20px;
 }
-.tableModal.counterTable{
-  background: url('../../../assets/images/tableModalCover.png');
+.tableModal.counterTable {
+  background: url("../../../assets/images/tableModalCover.png");
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
   border-radius: 10px;
-  &::before{
-    content: '';
+  &::before {
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -332,20 +338,22 @@
   }
 }
 
-.readyServe{
+.readyServe {
   color: #fff;
-    background: linear-gradient(0deg, #00000091, #2c838373, #00ffff7d);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    button{
-      position: absolute;
+  background: linear-gradient(0deg, #00000091, #2c838373, #00ffff7d);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  button {
+    position: absolute;
     bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 10px 30px;
+    padding: 10px 0px;
     border: none;
     border-radius: 40px;
-    background-color: #2BBBBB;
-    }
+    background-color: #2bbbbb;
+    min-width: 120px;
+    color: #fff;
+  }
 }
